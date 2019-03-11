@@ -78,6 +78,7 @@ public class Hand : MonoBehaviour
         interactables.Remove(other.gameObject.GetComponent<Interactable>());
     }
 
+    // Find the nearest interactable object and attempt to pick it up
     public void Pickup() {
         heldObject = GetNearestInteractable();
 
@@ -101,7 +102,8 @@ public class Hand : MonoBehaviour
         heldObject.activeHand = this;
 
     }
-
+    
+    // Drop a held object
     public void Drop() {
         if (!heldObject) {
             return;
@@ -135,9 +137,10 @@ public class Hand : MonoBehaviour
         return nearest;
     }
 
+    // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Enable teleport marker if disabled
-        if (!teleportMarkerInstance.activeSelf) {
+        if (!teleportMarkerInstance.activeSelf || heldObject) {
             teleportMarkerInstance.SetActive(true);
         }
 
@@ -147,10 +150,9 @@ public class Hand : MonoBehaviour
                 teleportMarkerInstance.transform.position = hit.point;
             }
         }
-
-
     }
 
+    // Attempt to teleport if there is a valid location found, otherwise abort
     private void TeleportUp() {
         if (teleportMarkerInstance.activeSelf && !isTeleporting) {
             //transform.root.position = teleportMarkerInstance.transform.position;
@@ -168,6 +170,7 @@ public class Hand : MonoBehaviour
 
     }
 
+    // Moves the player's rig with a slight fade and delay
     private IEnumerator MoveRig(Transform cameraRig, Vector3 translation) {
         isTeleporting = true;
 
