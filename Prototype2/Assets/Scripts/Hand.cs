@@ -19,10 +19,13 @@ public class Hand : MonoBehaviour
     private Interactable heldObject = null;
     private List<Interactable> interactables = new List<Interactable>();
 
-    // Teleport marker
+    // Teleport
     [SerializeField]
-    private GameObject teleportPrefab;
+    private GameObject teleportPrefab = null;
     private GameObject teleportMarkerInstance = null;
+    private bool isTeleporting = false;
+    [SerializeField]
+    private float teleportDelay = 0.5f;
 
     private void Awake() {
         handPose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -47,6 +50,15 @@ public class Hand : MonoBehaviour
 
         if (grabAction.GetLastStateUp(handPose.inputSource)) {
             Drop();
+        }
+
+        // Teleporting
+        if (teleportAction.GetLastState(handPose.inputSource)) {
+            TeleportDown();
+        }
+
+        if (teleportAction.GetLastStateUp(handPose.inputSource)) {
+            TeleportUp();
         }
     }
 
@@ -73,13 +85,19 @@ public class Hand : MonoBehaviour
             return;
         }
 
+        // Force other hand to drop if already held
         if (heldObject.activeHand) {
             heldObject.activeHand.Drop();
         }
 
+        // Update position
+        heldObject.transform.position = transform.position;
+
+        // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
 
+        // Store active hand
         heldObject.activeHand = this;
 
     }
@@ -134,10 +152,37 @@ public class Hand : MonoBehaviour
     }
 
     private void TeleportUp() {
-        if (teleportMarkerInstance.activeSelf) {
-            transform.root.position = teleportMarkerInstance.transform.position;
+        if (teleportMarkerInstance.activeSelf && !isTeleporting) {
+            //transform.root.position = teleportMarkerInstance.transform.position;
+            Transform cameraRig = SteamVR_Render.Top().origin;
+            Vector3 headPos = SteamVR_Render.Top().head.position;
+            // Determine translation
+            Vector3 groundPosition = new Vector3(headPos.x, cameraRig.position.y, headPos.z);
+            Vector3 translation = teleportMarkerInstance.transform.position - groundPosition;
+
+            // Move the rig
+            StartCoroutine(MoveRig(cameraRig, translation));
+
             teleportMarkerInstance.SetActive(false);
         }
+
+    }
+
+    private IEnumerator MoveRig(Transform cameraRig, Vector3 translation) {
+        isTeleporting = true;
+
+        // Apply fade
+        SteamVR_Fade.Start(Color.black, teleportDelay, true);
+
+        yield return new WaitForSeconds(teleportDelay);
+
+        // Move player
+        cameraRig.position += translation;
+
+        // End fade
+        SteamVR_Fade.Start(Color.clear, teleportDelay, true);
+
+        isTeleporting = false;
 
     }
 
