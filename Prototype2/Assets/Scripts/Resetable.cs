@@ -27,6 +27,7 @@ public class Resetable : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb) {
             rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 
