@@ -139,8 +139,13 @@ public class Hand : MonoBehaviour
 
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
+        // Cancel if holding ball
+        if (heldObject) {
+            return;
+        }
+
         // Enable teleport marker if disabled
-        if (!teleportMarkerInstance.activeSelf || heldObject) {
+        if (!teleportMarkerInstance.activeSelf) {
             teleportMarkerInstance.SetActive(true);
         }
 
