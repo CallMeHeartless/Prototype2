@@ -14,6 +14,8 @@ public class Hand : MonoBehaviour
     // Hand variables
     private SteamVR_Behaviour_Pose handPose = null;
     private FixedJoint grabJoint = null;
+    [SerializeField]
+    private float angularVelocityModifier = 3.0f;
 
     // Held object
     private Interactable heldObject = null;
@@ -92,13 +94,12 @@ public class Hand : MonoBehaviour
         }
 
         // Update position
-        //heldObject.transform.position = transform.position;
+        heldObject.transform.position = transform.position;
         
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        targetBody.MovePosition(transform.position);
-
+        //targetBody.isKinematic = true;
         grabJoint.connectedBody = targetBody;
 
         // Store active hand
@@ -114,8 +115,9 @@ public class Hand : MonoBehaviour
 
         // Apply physics
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
+        targetBody.isKinematic = false;
         targetBody.velocity = handPose.GetVelocity();
-        targetBody.angularVelocity = handPose.GetAngularVelocity();
+        targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
         grabJoint.connectedBody = null;
@@ -195,6 +197,10 @@ public class Hand : MonoBehaviour
 
         isTeleporting = false;
 
+    }
+
+    public SteamVR_Behaviour_Pose GetHandPose() {
+        return handPose;
     }
 
 }
