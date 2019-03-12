@@ -140,6 +140,7 @@ MonoBehaviour:
   teleportAction:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
+  angularVelocityModifier: 3
   teleportPrefab: {fileID: 2841067343659465047, guid: 3260da1c8f1989a459c024ad81a4f96d,
     type: 3}
   teleportDelay: 0.5
@@ -342,14 +343,14 @@ MonoBehaviour:
   size: 0
   color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
-  - {x: 1.5, y: 0.01, z: -1.125}
-  - {x: -1.5, y: 0.01, z: -1.125}
-  - {x: -1.5, y: 0.01, z: 1.125}
-  - {x: 1.5, y: 0.01, z: 1.125}
-  - {x: 1.65, y: 0.01, z: -1.275}
-  - {x: -1.65, y: 0.01, z: -1.275}
-  - {x: -1.65, y: 0.01, z: 1.275}
-  - {x: 1.65, y: 0.01, z: 1.275}
+  - {x: 1.5999995, y: 0.01, z: -0.9000002}
+  - {x: -1.5999995, y: 0.01, z: -0.9000002}
+  - {x: -1.5999995, y: 0.01, z: 0.9000002}
+  - {x: 1.5999995, y: 0.01, z: 0.9000002}
+  - {x: 1.7499995, y: 0.01, z: -1.0500002}
+  - {x: -1.7499995, y: 0.01, z: -1.0500002}
+  - {x: -1.7499995, y: 0.01, z: 1.0500002}
+  - {x: 1.7499995, y: 0.01, z: 1.0500002}
 --- !u!114 &5753633378949512129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetAction:
-    actionPath: /actions/default/in/GrabGrip
+    actionPath: /actions/default/in/MenuButton
     needsReinit: 0
 --- !u!1 &5753633378949649767
 GameObject:
@@ -505,6 +506,7 @@ MonoBehaviour:
   teleportAction:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
+  angularVelocityModifier: 3
   teleportPrefab: {fileID: 2841067343659465047, guid: 3260da1c8f1989a459c024ad81a4f96d,
     type: 3}
   teleportDelay: 0.5
@@ -518,8 +520,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5753127450034912245}
   - component: {fileID: 5737039445908755375}
-  - component: {fileID: 5753633378406903823}
   - component: {fileID: 5753633378406903822}
+  - component: {fileID: 5753633376957893977}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -583,7 +585,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &5753633378406903823
+--- !u!114 &5753633378406903822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5754068236173758443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad1e469d4e3e04489f9a36419f1a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5753633376957893977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -598,15 +612,3 @@ MonoBehaviour:
   _head: {fileID: 0}
   _ears: {fileID: 0}
   wireframe: 0
---- !u!114 &5753633378406903822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5754068236173758443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad1e469d4e3e04489f9a36419f1a4f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
