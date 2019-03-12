@@ -92,10 +92,13 @@ public class Hand : MonoBehaviour
         }
 
         // Update position
-        heldObject.transform.position = transform.position;
+        //heldObject.transform.position = transform.position;
+        
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
+        targetBody.MovePosition(transform.position);
+
         grabJoint.connectedBody = targetBody;
 
         // Store active hand
