@@ -7,6 +7,7 @@ public class score : MonoBehaviour
     public static int[] scoreBoard = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };//9
     public static int currentLevelScore = 0;
     public static int levelNumber = 1;
+    public static int Pins = 1;
     // Start is called before the first frame update
     void Start()
     {
