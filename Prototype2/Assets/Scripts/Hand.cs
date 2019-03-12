@@ -95,7 +95,7 @@ public class Hand : MonoBehaviour
 
         // Update position
         heldObject.transform.position = transform.position;
-        
+
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
@@ -115,12 +115,13 @@ public class Hand : MonoBehaviour
 
         // Apply physics
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        targetBody.isKinematic = false;
+        //targetBody.isKinematic = false;
+        ReleaseFromJoint(targetBody);
         targetBody.velocity = handPose.GetVelocity();
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
-        grabJoint.connectedBody = null;
+        //grabJoint.connectedBody = null;
         heldObject.activeHand = null;
         heldObject = null;
     }
@@ -201,6 +202,16 @@ public class Hand : MonoBehaviour
 
     public SteamVR_Behaviour_Pose GetHandPose() {
         return handPose;
+    }
+
+    public void AttachToJoint() {
+        Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
+        grabJoint.connectedBody = targetBody;
+    }
+
+    public void ReleaseFromJoint(Rigidbody targetBody) {
+        targetBody.isKinematic = false;
+        grabJoint.connectedBody = null;
     }
 
 }
