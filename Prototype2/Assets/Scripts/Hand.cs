@@ -10,6 +10,8 @@ public class Hand : MonoBehaviour
     private SteamVR_Action_Boolean grabAction = null;
     [SerializeField]
     private SteamVR_Action_Boolean teleportAction = null;
+    [SerializeField]
+    private SteamVR_Action_Vector2 touchpadButtons = null;
 
     // Hand variables
     private SteamVR_Behaviour_Pose handPose = null;
@@ -65,7 +67,7 @@ public class Hand : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (!other.CompareTag("Interactable")) {
+        if (!other.CompareTag("Interactable") && !other.CompareTag("Ball")) {
             return;
         }
 
@@ -73,7 +75,7 @@ public class Hand : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if (!other.CompareTag("Interactable")) {
+        if (!other.CompareTag("Interactable") && !other.CompareTag("Ball")) {
             return;
         }
 
@@ -91,16 +93,18 @@ public class Hand : MonoBehaviour
         // Force other hand to drop if already held
         if (heldObject.activeHand) {
             heldObject.activeHand.Drop();
+        } else {
+            // If the object is a ball, update the ball's last position
+            Ball ball = heldObject.GetComponent<Ball>();
+            if (ball) {
+                ball.UpdateLastPosition();
+            }
         }
-
-        // Update position
-        heldObject.transform.position = transform.position;
 
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        //targetBody.isKinematic = true;
-        grabJoint.connectedBody = targetBody;
+        targetBody.isKinematic = true;
 
         // Store active hand
         heldObject.activeHand = this;
@@ -113,16 +117,19 @@ public class Hand : MonoBehaviour
             return;
         }
 
-        // Apply physics
+        // Count throws if object is ball
+        if (heldObject.GetComponent<Ball>()) {
+            score.Roll();
+        }
+
+        // Apply physics and break joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        //targetBody.isKinematic = false;
         ReleaseFromJoint(targetBody);
         targetBody.velocity = handPose.GetVelocity();
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
-        //grabJoint.connectedBody = null;
-        heldObject.activeHand = null;
+        heldObject.GetComponent<Ball>().Release();
         heldObject = null;
     }
 
@@ -146,7 +153,7 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject) {
+        if (heldObject || isTeleporting) {
             return;
         }
 
@@ -159,6 +166,7 @@ public class Hand : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, out hit)) {
             if (hit.collider.CompareTag("Walkable")) {
                 teleportMarkerInstance.transform.position = hit.point;
+                
             }
         }
     }
@@ -166,7 +174,7 @@ public class Hand : MonoBehaviour
     // Attempt to teleport if there is a valid location found, otherwise abort
     private void TeleportUp() {
         if (teleportMarkerInstance.activeSelf && !isTeleporting) {
-            //transform.root.position = teleportMarkerInstance.transform.position;
+            
             Transform cameraRig = SteamVR_Render.Top().origin;
             Vector3 headPos = SteamVR_Render.Top().head.position;
             // Determine translation
@@ -205,13 +213,36 @@ public class Hand : MonoBehaviour
     }
 
     public void AttachToJoint() {
+        heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
+        targetBody.isKinematic = false;
+
+        // Haptic feedback
+        SpecialInput.Pulse(0.2f, 150.0f, 15.0f, handPose.inputSource);
     }
 
     public void ReleaseFromJoint(Rigidbody targetBody) {
         targetBody.isKinematic = false;
         grabJoint.connectedBody = null;
+    }
+
+    private int ConvertTouchPadButtons(Vector2 vectorInput) {
+        if(vectorInput.y > 0.7) {
+            return 0;
+        }
+        else if(vectorInput.y < -0.7f) {
+            return 2;
+        }
+
+        else if(vectorInput.x < -0.7f) {
+            return 1;
+        }
+        else if(vectorInput.x > 0.7f) {
+            return 3;
+        }
+
+        return 0;
     }
 
 }
