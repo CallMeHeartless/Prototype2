@@ -33,7 +33,6 @@ public class Ball : Interactable
                 //rb.MovePosition(activeHand.transform.position);
                 hasReachedHand = true;
                 activeHand.AttachToJoint();
-                // Haptic feedback
             }
 
 
