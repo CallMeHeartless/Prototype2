@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: a0da0744abaf92b45824cab7cd395a65
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Player_Righthand
+    100004: R_PlayerHand_Hand
+    100006: R_PlayerHand_Index_01
+    100008: R_PlayerHand_Index_02
+    100010: R_PlayerHand_Index_03
+    100012: R_PlayerHand_Index_end
+    100014: R_PlayerHand_Middle_01
+    100016: R_PlayerHand_Middle_02
+    100018: R_PlayerHand_Middle_03
+    100020: R_PlayerHand_Middle_end
+    100022: R_PlayerHand_Pinky_01
+    100024: R_PlayerHand_Pinky_02
+    100026: R_PlayerHand_Pinky_03
+    100028: R_PlayerHand_Pinky_end
+    100030: R_PlayerHand_Ring_01
+    100032: R_PlayerHand_Ring_02
+    100034: R_PlayerHand_Ring_03
+    100036: R_PlayerHand_Ring_end
+    100038: R_PlayerHand_Thumb_01
+    100040: R_PlayerHand_Thumb_02
+    100042: R_PlayerHand_Thumb_03
+    100044: R_PlayerHand_Thumb_end
+    100046: R_PlayerHand_Wrist
+    400000: //RootNode
+    400002: Player_Righthand
+    400004: R_PlayerHand_Hand
+    400006: R_PlayerHand_Index_01
+    400008: R_PlayerHand_Index_02
+    400010: R_PlayerHand_Index_03
+    400012: R_PlayerHand_Index_end
+    400014: R_PlayerHand_Middle_01
+    400016: R_PlayerHand_Middle_02
+    400018: R_PlayerHand_Middle_03
+    400020: R_PlayerHand_Middle_end
+    400022: R_PlayerHand_Pinky_01
+    400024: R_PlayerHand_Pinky_02
+    400026: R_PlayerHand_Pinky_03
+    400028: R_PlayerHand_Pinky_end
+    400030: R_PlayerHand_Ring_01
+    400032: R_PlayerHand_Ring_02
+    400034: R_PlayerHand_Ring_03
+    400036: R_PlayerHand_Ring_end
+    400038: R_PlayerHand_Thumb_01
+    400040: R_PlayerHand_Thumb_02
+    400042: R_PlayerHand_Thumb_03
+    400044: R_PlayerHand_Thumb_end
+    400046: R_PlayerHand_Wrist
+    2100000: lambert1
+    4300000: Player_Righthand
+    7400000: CloseHand
+    7400002: OpenHand
+    9500000: //RootNode
+    13700000: Player_Righthand
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
