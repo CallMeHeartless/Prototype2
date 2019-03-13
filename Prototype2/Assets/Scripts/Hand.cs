@@ -94,13 +94,13 @@ public class Hand : MonoBehaviour
         }
 
         // Update position
-        heldObject.transform.position = transform.position;
+        //heldObject.transform.position = transform.position;
 
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        //targetBody.isKinematic = true;
-        grabJoint.connectedBody = targetBody;
+        targetBody.isKinematic = true;
+        //grabJoint.connectedBody = targetBody;
 
         // Store active hand
         heldObject.activeHand = this;
@@ -115,14 +115,15 @@ public class Hand : MonoBehaviour
 
         // Apply physics
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        //targetBody.isKinematic = false;
         ReleaseFromJoint(targetBody);
         targetBody.velocity = handPose.GetVelocity();
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
         //grabJoint.connectedBody = null;
-        heldObject.activeHand = null;
+        //heldObject.activeHand = null;
+        heldObject.GetComponent<Ball>().Release();
+        
         heldObject = null;
     }
 
@@ -205,8 +206,10 @@ public class Hand : MonoBehaviour
     }
 
     public void AttachToJoint() {
+        heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
+        //targetBody.isKinematic = false;
     }
 
     public void ReleaseFromJoint(Rigidbody targetBody) {
