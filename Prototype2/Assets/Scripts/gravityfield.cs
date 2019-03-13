@@ -5,6 +5,7 @@ using UnityEngine;
 public class gravityfield : MonoBehaviour
 {
     public float gravityeffect;
+    public Vector3 newgrvity;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,19 +19,30 @@ public class gravityfield : MonoBehaviour
 
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-
-        other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 1, 0)* gravityeffect, ForceMode.Acceleration);
-        Debug.Log("still");
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball")|| other.gameObject.CompareTag("Pin"))
+    //    {
+    //        other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 1, 0) * gravityeffect, ForceMode.Acceleration);
+    //        Debug.Log("still");
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 18, 0) , ForceMode.Acceleration);
+        if (other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball") || other.gameObject.CompareTag("Pin"))
+        {
+            Physics.gravity = newgrvity;
+            //effect slef gravity
+        }
         //other.gameObject.GetComponent<Rigidbody>().useGravity = false;
     }
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    other.gameObject.GetComponent<Rigidbody>().useGravity = true;
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball") || other.gameObject.CompareTag("Pin"))
+        {
+            Physics.gravity = new Vector3(0,9.81f,0);
+            //effect slef gravity 
+        }
+        //    other.gameObject.GetComponent<Rigidbody>().useGravity = true;
+    }
 }

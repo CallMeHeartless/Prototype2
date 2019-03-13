@@ -11,7 +11,7 @@ public class fan : MonoBehaviour
 
    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Interactable"))
+        if (other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball"))
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(boostDirection * boost, ForceMode.Force);
         }

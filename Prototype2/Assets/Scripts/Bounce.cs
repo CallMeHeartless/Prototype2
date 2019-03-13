@@ -14,7 +14,7 @@ public class Bounce : MonoBehaviour
     {
 
         Debug.Log("hitting");
-        if (other.CompareTag("Interactable") && other != this)
+        if (other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball"))
         {
             Debug.Log("player");
             Vector3 direction = other.transform.position - transform.position;

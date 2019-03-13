@@ -9,6 +9,7 @@ TagManager:
   - Interactable
   - Walkable
   - Ball
+  - Pin
   layers:
   - Default
   - TransparentFX
