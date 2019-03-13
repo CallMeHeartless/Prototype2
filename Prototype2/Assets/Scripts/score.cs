@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class score : MonoBehaviour
 {
@@ -8,26 +9,23 @@ public class score : MonoBehaviour
     public static int currentLevelScore = 0;
     public static int levelNumber = 1;
     public static int Pins = 1;
+    public static string levelName;
     // Start is called before the first frame update
-    void Start()
-    {
-       
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+   
     public static void Nextlevel()
     {
-        scoreBoard[levelNumber-1] = currentLevelScore;
-        currentLevelScore = 0;
-        levelNumber++;
+        if (Pins == 0)
+        {
+            scoreBoard[levelNumber - 1] = currentLevelScore;
+            currentLevelScore = 0;
+            levelNumber++;
+            SceneManager.LoadScene(levelName);
+        }
+    
     }
     public static void Roll()
     {
         currentLevelScore++;
     }
+
 }

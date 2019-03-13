@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class goal : MonoBehaviour
 {
-    public string nextLevelName;
+    bool fristhit = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +19,26 @@ public class goal : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Interactable"))
+        if (fristhit == true)
         {
-            StartCoroutine(waitAbit());
+            if (collision.gameObject.CompareTag("Interactable"))
+            {
+                fristhit = false;
+                score.Pins--;
+                StartCoroutine(waitAbit());
+
+            }
         }
+        
+        
           
     }
     IEnumerator waitAbit()
     {
         yield return new WaitForSeconds(4);
-
-        SceneManager.LoadScene(nextLevelName);
+        
+        Destroy(gameObject);
+        score.Nextlevel();
+        
     }
 }
