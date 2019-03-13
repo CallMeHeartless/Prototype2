@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1904414268343140370}
   - component: {fileID: 2513767106016745028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HandModel_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5382722790644444426}
   - component: {fileID: 3062279467518944308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HandModel_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 5753633377407468806}
   - component: {fileID: 5753633377407468805}
   - component: {fileID: 5753633377407468804}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Controller (left)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 1.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!138 &5753633377407468805
 FixedJoint:
@@ -318,13 +318,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5753633378949330573}
   - component: {fileID: 5753633378959330707}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5753633378949330573
 Transform:
   m_ObjectHideFlags: 0
@@ -367,13 +367,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5753633378949326609}
   - component: {fileID: 5753633378959330585}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5753633378949326609
 Transform:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 5753633377226885847}
   - component: {fileID: 5753633377226885846}
   - component: {fileID: 5753633377226885845}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Controller (right)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 1.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!138 &5753633377226885846
 FixedJoint:
