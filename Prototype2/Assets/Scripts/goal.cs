@@ -18,7 +18,7 @@ public class goal : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ball"))
+        if (collision.gameObject.CompareTag("Interactable"))
         {
             StartCoroutine(waitAbit());
         }
