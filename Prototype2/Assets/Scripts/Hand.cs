@@ -91,6 +91,8 @@ public class Hand : MonoBehaviour
         // Force other hand to drop if already held
         if (heldObject.activeHand) {
             heldObject.activeHand.Drop();
+        } else {
+            heldObject.GetComponent<Ball>().UpdateLastPosition();
         }
 
         // Update position
@@ -210,6 +212,8 @@ public class Hand : MonoBehaviour
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
         //targetBody.isKinematic = false;
+
+        SpecialInput.Pulse(0.5f, 150.0f, 10.0f, handPose.inputSource);
     }
 
     public void ReleaseFromJoint(Rigidbody targetBody) {
