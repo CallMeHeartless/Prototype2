@@ -19,7 +19,7 @@ public class telCol : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Interactable"))
+        iif(other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball") || other.gameObject.CompareTag("Pin"))
         {
             other.transform.position = otherEnd.transform.position;
         }
