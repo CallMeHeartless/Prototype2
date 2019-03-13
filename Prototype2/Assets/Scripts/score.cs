@@ -19,7 +19,12 @@ public class score : MonoBehaviour
             scoreBoard[levelNumber - 1] = currentLevelScore;
             currentLevelScore = 0;
             levelNumber++;
-            SceneManager.LoadScene(levelName);
+            if(levelName != "") {
+                SceneManager.LoadScene(levelName);
+            } else {
+                print("Level completed");
+            }
+
         }
     
     }

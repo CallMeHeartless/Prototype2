@@ -12,6 +12,7 @@ public class setPin : MonoBehaviour
         GameObject[] AllPin = GameObject.FindGameObjectsWithTag("Pin");
         score.Pins = AllPin.Length;
         score.levelName = nextLevelName;
+        print(AllPin.Length);
     }
 
     // Update is called once per frame
