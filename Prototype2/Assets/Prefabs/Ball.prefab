@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6969529772616089007}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Interactable
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,3 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeHand: {fileID: 0}
+  hasReachedHand: 0
+  translationSpeed: 10
+  grabThreshold: 0.01

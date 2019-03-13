@@ -28,9 +28,9 @@ public class Ball : Interactable
 
             Vector3 direction = activeHand.transform.position - transform.position;
             if (direction.sqrMagnitude > grabThreshold) {
-                rb.MovePosition(transform.position + direction * translationSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
             } else {
-                rb.MovePosition(activeHand.transform.position);
+                //rb.MovePosition(activeHand.transform.position);
                 hasReachedHand = true;
                 activeHand.AttachToJoint();
                 // Haptic feedback
