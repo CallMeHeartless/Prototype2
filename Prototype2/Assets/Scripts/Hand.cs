@@ -40,7 +40,7 @@ public class Hand : MonoBehaviour
         }
 
         teleportMarkerInstance = Instantiate(teleportPrefab);
-        teleportMarkerInstance.SetActive(false);
+        //teleportMarkerInstance.SetActive(false);
     }
 
     // Update is called once per frame
@@ -149,7 +149,7 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject) {
+        if (heldObject || isTeleporting) {
             return;
         }
 
@@ -162,6 +162,7 @@ public class Hand : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, out hit)) {
             if (hit.collider.CompareTag("Walkable")) {
                 teleportMarkerInstance.transform.position = hit.point;
+                
             }
         }
     }
@@ -169,7 +170,7 @@ public class Hand : MonoBehaviour
     // Attempt to teleport if there is a valid location found, otherwise abort
     private void TeleportUp() {
         if (teleportMarkerInstance.activeSelf && !isTeleporting) {
-            //transform.root.position = teleportMarkerInstance.transform.position;
+            
             Transform cameraRig = SteamVR_Render.Top().origin;
             Vector3 headPos = SteamVR_Render.Top().head.position;
             // Determine translation
@@ -211,9 +212,10 @@ public class Hand : MonoBehaviour
         heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
-        //targetBody.isKinematic = false;
+        targetBody.isKinematic = false;
 
-        SpecialInput.Pulse(0.5f, 150.0f, 10.0f, handPose.inputSource);
+        // Haptic feedback
+        SpecialInput.Pulse(0.2f, 150.0f, 15.0f, handPose.inputSource);
     }
 
     public void ReleaseFromJoint(Rigidbody targetBody) {

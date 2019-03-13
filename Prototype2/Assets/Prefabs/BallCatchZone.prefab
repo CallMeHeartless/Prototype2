@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 812701731603166076}
   - component: {fileID: 9054456823326752037}
   - component: {fileID: 3254331550217692487}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BallCatchZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
