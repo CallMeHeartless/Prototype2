@@ -40,7 +40,7 @@ public class Hand : MonoBehaviour
         }
 
         teleportMarkerInstance = Instantiate(teleportPrefab);
-        //teleportMarkerInstance.SetActive(false);
+        teleportMarkerInstance.SetActive(false);
     }
 
     // Update is called once per frame
