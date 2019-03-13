@@ -5,9 +5,15 @@ using Valve.VR;
 
 public class SpecialInput : MonoBehaviour
 {
+    private static SpecialInput instance = null;
+
     [SerializeField]
     private SteamVR_Action_Boolean resetAction = null;
-    private static SteamVR_Action_Vibration hapticAction;
+    public SteamVR_Action_Vibration hapticAction;
+
+    private void Awake() {
+        instance = this;
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,7 +24,7 @@ public class SpecialInput : MonoBehaviour
     }
 
     public static void Pulse(float duration, float frequency, float amplitude, SteamVR_Input_Sources source) {
-        hapticAction.Execute(0.0f, duration, frequency, amplitude, source);
+        instance.hapticAction.Execute(0.0f, duration, frequency, amplitude, source);
 
     }
 }
