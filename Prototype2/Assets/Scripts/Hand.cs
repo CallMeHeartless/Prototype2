@@ -64,6 +64,10 @@ public class Hand : MonoBehaviour
         if (teleportAction.GetLastStateUp(handPose.inputSource)) {
             TeleportUp();
         }
+
+        if (teleportAction.GetLastStateDown(handPose.inputSource)) {
+            
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
