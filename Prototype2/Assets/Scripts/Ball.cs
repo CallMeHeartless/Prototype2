@@ -44,4 +44,14 @@ public class Ball : Interactable
         activeHand = null;
         hasReachedHand = false;
     }
+
+    public void UpdateLastPosition() {
+        lastPosition = transform.position;
+    }
+
+    public void ReturnToLastPosition() {
+        transform.position = lastPosition;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 }
