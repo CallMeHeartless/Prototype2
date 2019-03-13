@@ -10,6 +10,8 @@ public class Hand : MonoBehaviour
     private SteamVR_Action_Boolean grabAction = null;
     [SerializeField]
     private SteamVR_Action_Boolean teleportAction = null;
+    [SerializeField]
+    private SteamVR_Action_Vector2 touchpadButtons = null;
 
     // Hand variables
     private SteamVR_Behaviour_Pose handPose = null;
@@ -40,7 +42,7 @@ public class Hand : MonoBehaviour
         }
 
         teleportMarkerInstance = Instantiate(teleportPrefab);
-        //teleportMarkerInstance.SetActive(false);
+        teleportMarkerInstance.SetActive(false);
     }
 
     // Update is called once per frame
@@ -92,17 +94,17 @@ public class Hand : MonoBehaviour
         if (heldObject.activeHand) {
             heldObject.activeHand.Drop();
         } else {
-            heldObject.GetComponent<Ball>().UpdateLastPosition();
+            // If the object is a ball, update the ball's last position
+            Ball ball = heldObject.GetComponent<Ball>();
+            if (ball) {
+                ball.UpdateLastPosition();
+            }
         }
-
-        // Update position
-        //heldObject.transform.position = transform.position;
 
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         targetBody.isKinematic = true;
-        //grabJoint.connectedBody = targetBody;
 
         // Store active hand
         heldObject.activeHand = this;
@@ -115,17 +117,19 @@ public class Hand : MonoBehaviour
             return;
         }
 
-        // Apply physics
+        // Count throws if object is ball
+        if (heldObject.GetComponent<Ball>()) {
+            score.Roll();
+        }
+
+        // Apply physics and break joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         ReleaseFromJoint(targetBody);
         targetBody.velocity = handPose.GetVelocity();
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
-        //grabJoint.connectedBody = null;
-        //heldObject.activeHand = null;
         heldObject.GetComponent<Ball>().Release();
-        
         heldObject = null;
     }
 
@@ -221,6 +225,24 @@ public class Hand : MonoBehaviour
     public void ReleaseFromJoint(Rigidbody targetBody) {
         targetBody.isKinematic = false;
         grabJoint.connectedBody = null;
+    }
+
+    private int ConvertTouchPadButtons(Vector2 vectorInput) {
+        if(vectorInput.y > 0.7) {
+            return 0;
+        }
+        else if(vectorInput.y < -0.7f) {
+            return 2;
+        }
+
+        else if(vectorInput.x < -0.7f) {
+            return 1;
+        }
+        else if(vectorInput.x > 0.7f) {
+            return 3;
+        }
+
+        return 0;
     }
 
 }
