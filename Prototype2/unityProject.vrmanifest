@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.prototype2.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "D:\\_MDS\\Production\\Prototype2\\Prototype2\\actions.json",
+      "action_manifest_path": "H:\\Production\\Prototype2\\Prototype2\\actions.json",
       "strings": {
         "en_us": {
           "name": "Prototype2 [Testing]"

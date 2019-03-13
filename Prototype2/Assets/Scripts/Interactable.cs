@@ -8,5 +8,8 @@ public class Interactable : MonoBehaviour
     [HideInInspector]
     public Hand activeHand = null;
 
+    public virtual void Use() {
+
+    }
 
 }
