@@ -22,6 +22,7 @@ public class telCol : MonoBehaviour
         if(other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball") || other.gameObject.CompareTag("Pin"))
         {
             other.transform.position = otherEnd.transform.position;
+            other.GetComponent<Rigidbody>().velocity = Quaternion.Euler(transform.rotation.eulerAngles) * other.GetComponent<Rigidbody>().velocity;
         }
     }
 }
