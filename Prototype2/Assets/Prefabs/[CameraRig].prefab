@@ -303,7 +303,10 @@ MonoBehaviour:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
   touchpadButtons:
-    actionPath: 
+    actionPath: /actions/default/in/TouchpadPosition
+    needsReinit: 0
+  gripTest:
+    actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
   angularVelocityModifier: 3
   teleportPrefab: {fileID: 2841067343659465047, guid: 3260da1c8f1989a459c024ad81a4f96d,
@@ -678,7 +681,10 @@ MonoBehaviour:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
   touchpadButtons:
-    actionPath: 
+    actionPath: /actions/default/in/TouchpadPosition
+    needsReinit: 0
+  gripTest:
+    actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
   angularVelocityModifier: 3
   teleportPrefab: {fileID: 2841067343659465047, guid: 3260da1c8f1989a459c024ad81a4f96d,
