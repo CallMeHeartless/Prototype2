@@ -67,8 +67,6 @@ public class Hand : MonoBehaviour
             Drop();
         }
 
-        
-
         // Detect button down
         if (teleportAction.GetLastStateDown(handPose.inputSource)) {
 
@@ -110,44 +108,17 @@ public class Hand : MonoBehaviour
                     TeleportUp();
                     break;
                 }
-                // Teleport to Ball
-                case 1: {
-                    break;
-                }
-                // Mulligan
-                case 2: {
-                    break;
-                }
-                // Display UI
-                case 3: {
+
+                default: {
                     ToggleScoreUI(false);
                     break;
                 }
-                default: break;
             }
         }
 
         if (teleportDown) {
             TeleportDown();
         }
-
-        // Teleporting
-        //if (teleportAction.GetLastState(handPose.inputSource)) {
-        //    TeleportDown();
-        //}
-
-        //if (teleportAction.GetLastStateUp(handPose.inputSource)) {
-        //    TeleportUp();
-        //}
-
-        // Display UI (test)
-        //if (gripTest.GetLastStateDown(handPose.inputSource)) {
-        //    ToggleScoreUI(true);
-        //}
-        //if (gripTest.GetLastStateUp(handPose.inputSource)) {
-        //    ToggleScoreUI(false);
-        //}
-
     }
 
     private void OnTriggerEnter(Collider other) {
