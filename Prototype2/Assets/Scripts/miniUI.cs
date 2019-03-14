@@ -13,14 +13,13 @@ public class miniUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+  //  void Update()
+   // {
         //transform.GetChild(0).GetComponent<Text>().text = score.levelNumber.ToString();
         //transform.GetChild(1).GetComponent<Text>().text = score.currentLevelScore.ToString();
-    }
+    //}
 
     public void UpdateScore() {
-        transform.GetChild(0).GetComponent<Text>().text = score.levelNumber.ToString();
-        transform.GetChild(1).GetComponent<Text>().text = score.currentLevelScore.ToString();
+        transform.GetComponentInChildren<Text>().text = "Current Score: " + score.currentLevelScore + " | Best Score: ";
     }
 }

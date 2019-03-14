@@ -12,6 +12,8 @@ public class Hand : MonoBehaviour
     private SteamVR_Action_Boolean teleportAction = null;
     [SerializeField]
     private SteamVR_Action_Vector2 touchpadButtons = null;
+    [SerializeField]
+    private SteamVR_Action_Boolean gripTest = null;
 
     // Hand variables
     private SteamVR_Behaviour_Pose handPose = null;
@@ -29,12 +31,13 @@ public class Hand : MonoBehaviour
     private GameObject teleportMarkerInstance = null;
     private bool isTeleporting = false;
     private static bool handsAreFree = true;
+    private bool teleportDown = false;
     [SerializeField]
     private float teleportDelay = 0.5f;
 
     // UI
     [SerializeField]
-    private miniUI levelScore;
+    private GameObject scoreUI;
 
     private void Awake() {
         handPose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -49,11 +52,13 @@ public class Hand : MonoBehaviour
         teleportMarkerInstance = Instantiate(teleportPrefab);
         teleportMarkerInstance.transform.position = transform.root.transform.position;
         teleportMarkerInstance.SetActive(false);
+        scoreUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        // Picking up and releasing items
         if (grabAction.GetLastStateDown(handPose.inputSource)) {
             Pickup();
         }
@@ -62,18 +67,87 @@ public class Hand : MonoBehaviour
             Drop();
         }
 
-        // Teleporting
-        if (teleportAction.GetLastState(handPose.inputSource)) {
+        
+
+        // Detect button down
+        if (teleportAction.GetLastStateDown(handPose.inputSource)) {
+
+            int specialAction = ConvertTouchPadButtons(touchpadButtons.GetLastAxis(handPose.inputSource));
+            print(specialAction);
+            switch (specialAction) {
+                // Enable teleporting
+                case 0: {
+                    teleportDown = true;
+                    break;
+                }
+                // Mulligan
+                case 1: {
+                    Mulligan();
+                    break;
+                }
+                // Teleport to Ball
+                case 2: {
+                    TeleportToBall();
+                    break;
+                }
+                // Display UI
+                case 3: {
+                    ToggleScoreUI(true);
+                    break;
+                }
+                default:break;
+            }
+        }
+
+        // Detect button up
+        if (teleportAction.GetLastStateUp(handPose.inputSource)) {
+
+            int specialAction = ConvertTouchPadButtons(touchpadButtons.GetLastAxis(handPose.inputSource));
+            switch (specialAction) {
+                // Enable teleporting
+                case 0: {
+                    teleportDown = false;
+                    TeleportUp();
+                    break;
+                }
+                // Teleport to Ball
+                case 1: {
+                    break;
+                }
+                // Mulligan
+                case 2: {
+                    break;
+                }
+                // Display UI
+                case 3: {
+                    ToggleScoreUI(false);
+                    break;
+                }
+                default: break;
+            }
+        }
+
+        if (teleportDown) {
             TeleportDown();
         }
 
-        if (teleportAction.GetLastStateUp(handPose.inputSource)) {
-            TeleportUp();
-        }
-
-        //if (teleportAction.GetLastStateDown(handPose.inputSource)) {
-            
+        // Teleporting
+        //if (teleportAction.GetLastState(handPose.inputSource)) {
+        //    TeleportDown();
         //}
+
+        //if (teleportAction.GetLastStateUp(handPose.inputSource)) {
+        //    TeleportUp();
+        //}
+
+        // Display UI (test)
+        //if (gripTest.GetLastStateDown(handPose.inputSource)) {
+        //    ToggleScoreUI(true);
+        //}
+        //if (gripTest.GetLastStateUp(handPose.inputSource)) {
+        //    ToggleScoreUI(false);
+        //}
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -132,9 +206,7 @@ public class Hand : MonoBehaviour
         // Count throws if object is ball
         if (heldObject.GetComponent<Ball>()) {
             score.Roll();
-            if (levelScore) {
-                levelScore.UpdateScore();
-            }
+
         }
 
         // Apply physics and break joint
@@ -156,6 +228,7 @@ public class Hand : MonoBehaviour
 
     }
 
+    // Returns the interactable object closest to the hand
     private Interactable GetNearestInteractable() {
         Interactable nearest = null;
         float minDistance = float.MaxValue;
@@ -176,7 +249,7 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject || isTeleporting) {
+        if (heldObject || isTeleporting || !handsAreFree) {
             return;
         }
 
@@ -235,7 +308,9 @@ public class Hand : MonoBehaviour
         return handPose;
     }
 
+    // Attaches an interactable object to the hand
     public void AttachToJoint() {
+        // Force the object to be mapped to its (offset) and attach it to the fixed joint
         heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
@@ -245,27 +320,73 @@ public class Hand : MonoBehaviour
         SpecialInput.Pulse(0.2f, 150.0f, 15.0f, handPose.inputSource);
     }
 
+    // Detaches an interactable object from the hand's fixed joint, freeing it
     public void ReleaseFromJoint(Rigidbody targetBody) {
         targetBody.isKinematic = false;
         grabJoint.connectedBody = null;
     }
 
     private int ConvertTouchPadButtons(Vector2 vectorInput) {
-        if(vectorInput.y > 0.7) {
+        if(vectorInput.y > 0.5) {
             return 0;
         }
-        else if(vectorInput.y < -0.7f) {
+        else if(vectorInput.y < -0.5f) {
             return 2;
         }
 
-        else if(vectorInput.x < -0.7f) {
-            return 1;
+        else if(vectorInput.x < -0.3f) {
+            //return 1;
+            return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 3 : 1;
         }
-        else if(vectorInput.x > 0.7f) {
-            return 3;
+        else if(vectorInput.x > 0.3f) {
+            //return 3;
+            return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 1 : 3;
         }
 
         return 0;
     }
 
+    // Update and toggle the display for the UI on this hand
+    private void ToggleScoreUI(bool on) {
+        if (scoreUI) {  // Protect against null reference
+            scoreUI.GetComponent<miniUI>().UpdateScore();
+            if (scoreUI.activeSelf == on) {
+                return; // Return if we are not changing state
+            }       
+            scoreUI.SetActive(on);
+        }
+    }
+
+    // Allows the player to undo their most recent throw
+    private void Mulligan() {
+        // if(mulliganCount < 0){return;}
+        // Return ball
+        GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+        if (ball) {
+            ball.GetComponent<Ball>().ReturnToLastPosition();
+        }
+
+        // Undo throw on score
+        --score.currentLevelScore;
+
+        // --mulliganCount;
+    }
+
+    // Teleports the player directly to their ball - CURRENTLY UNSAFE
+    private void TeleportToBall() {
+        if (!isTeleporting) {
+            GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+            if (!ball) {
+                return;
+            }
+            Transform cameraRig = SteamVR_Render.Top().origin;
+            Vector3 headPos = SteamVR_Render.Top().head.position;
+            // Determine translation
+            Vector3 groundPosition = new Vector3(headPos.x, cameraRig.position.y, headPos.z);
+            Vector3 translation = ball.transform.position - groundPosition;
+
+            // Move the rig
+            StartCoroutine(MoveRig(cameraRig, translation));
+        }
+    }
 }
