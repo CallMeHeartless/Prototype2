@@ -34,7 +34,7 @@ public class Hand : MonoBehaviour
 
     // UI
     [SerializeField]
-    private miniUI levelScore;
+    private GameObject scoreUI;
 
     private void Awake() {
         handPose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -49,6 +49,7 @@ public class Hand : MonoBehaviour
         teleportMarkerInstance = Instantiate(teleportPrefab);
         teleportMarkerInstance.transform.position = transform.root.transform.position;
         teleportMarkerInstance.SetActive(false);
+        scoreUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -132,9 +133,9 @@ public class Hand : MonoBehaviour
         // Count throws if object is ball
         if (heldObject.GetComponent<Ball>()) {
             score.Roll();
-            if (levelScore) {
-                levelScore.UpdateScore();
-            }
+            //if (scoreUI) {
+            //    scoreUI..UpdateScore();
+            //}
         }
 
         // Apply physics and break joint
@@ -156,6 +157,7 @@ public class Hand : MonoBehaviour
 
     }
 
+    // Returns the interactable object closest to the hand
     private Interactable GetNearestInteractable() {
         Interactable nearest = null;
         float minDistance = float.MaxValue;
@@ -235,7 +237,9 @@ public class Hand : MonoBehaviour
         return handPose;
     }
 
+    // Attaches an interactable object to the hand
     public void AttachToJoint() {
+        // Force the object to be mapped to its (offset) and attach it to the fixed joint
         heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
         grabJoint.connectedBody = targetBody;
@@ -245,6 +249,7 @@ public class Hand : MonoBehaviour
         SpecialInput.Pulse(0.2f, 150.0f, 15.0f, handPose.inputSource);
     }
 
+    // Detaches an interactable object from the hand's fixed joint, freeing it
     public void ReleaseFromJoint(Rigidbody targetBody) {
         targetBody.isKinematic = false;
         grabJoint.connectedBody = null;
@@ -268,4 +273,14 @@ public class Hand : MonoBehaviour
         return 0;
     }
 
+    // Update and toggle the display for the UI on this hand
+    private void ToggleScoreUI(bool on) {
+        if (scoreUI) {  // Protect against null reference
+            scoreUI.GetComponent<miniUI>().UpdateScore();
+            if (scoreUI.activeSelf == on) {
+                return; // Return if we are not changing state
+            }       
+            scoreUI.SetActive(on);
+        }
+    }
 }
