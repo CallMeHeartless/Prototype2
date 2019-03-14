@@ -31,6 +31,7 @@ public class Hand : MonoBehaviour
     private GameObject teleportMarkerInstance = null;
     private bool isTeleporting = false;
     private static bool handsAreFree = true;
+    private bool teleportDown = false;
     [SerializeField]
     private float teleportDelay = 0.5f;
 
@@ -66,26 +67,87 @@ public class Hand : MonoBehaviour
             Drop();
         }
 
-        // Teleporting
-        if (teleportAction.GetLastState(handPose.inputSource)) {
+        
+
+        // Detect button down
+        if (teleportAction.GetLastStateDown(handPose.inputSource)) {
+
+            int specialAction = ConvertTouchPadButtons(touchpadButtons.GetLastAxis(handPose.inputSource));
+            print(specialAction);
+            switch (specialAction) {
+                // Enable teleporting
+                case 0: {
+                    teleportDown = true;
+                    break;
+                }
+                // Mulligan
+                case 1: {
+                    Mulligan();
+                    break;
+                }
+                // Teleport to Ball
+                case 2: {
+                    TeleportToBall();
+                    break;
+                }
+                // Display UI
+                case 3: {
+                    ToggleScoreUI(true);
+                    break;
+                }
+                default:break;
+            }
+        }
+
+        // Detect button up
+        if (teleportAction.GetLastStateUp(handPose.inputSource)) {
+
+            int specialAction = ConvertTouchPadButtons(touchpadButtons.GetLastAxis(handPose.inputSource));
+            switch (specialAction) {
+                // Enable teleporting
+                case 0: {
+                    teleportDown = false;
+                    TeleportUp();
+                    break;
+                }
+                // Teleport to Ball
+                case 1: {
+                    break;
+                }
+                // Mulligan
+                case 2: {
+                    break;
+                }
+                // Display UI
+                case 3: {
+                    ToggleScoreUI(false);
+                    break;
+                }
+                default: break;
+            }
+        }
+
+        if (teleportDown) {
             TeleportDown();
         }
 
-        if (teleportAction.GetLastStateUp(handPose.inputSource)) {
-            TeleportUp();
-        }
+        // Teleporting
+        //if (teleportAction.GetLastState(handPose.inputSource)) {
+        //    TeleportDown();
+        //}
+
+        //if (teleportAction.GetLastStateUp(handPose.inputSource)) {
+        //    TeleportUp();
+        //}
 
         // Display UI (test)
-        if (gripTest.GetLastStateDown(handPose.inputSource)) {
-            ToggleScoreUI(true);
-        }
-        if (gripTest.GetLastStateUp(handPose.inputSource)) {
-            ToggleScoreUI(false);
-        }
-
-        //if (teleportAction.GetLastStateDown(handPose.inputSource)) {
-            
+        //if (gripTest.GetLastStateDown(handPose.inputSource)) {
+        //    ToggleScoreUI(true);
         //}
+        //if (gripTest.GetLastStateUp(handPose.inputSource)) {
+        //    ToggleScoreUI(false);
+        //}
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -187,7 +249,7 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject || isTeleporting) {
+        if (heldObject || isTeleporting || !handsAreFree) {
             return;
         }
 
@@ -265,18 +327,20 @@ public class Hand : MonoBehaviour
     }
 
     private int ConvertTouchPadButtons(Vector2 vectorInput) {
-        if(vectorInput.y > 0.7) {
+        if(vectorInput.y > 0.5) {
             return 0;
         }
-        else if(vectorInput.y < -0.7f) {
+        else if(vectorInput.y < -0.5f) {
             return 2;
         }
 
-        else if(vectorInput.x < -0.7f) {
-            return 1;
+        else if(vectorInput.x < -0.3f) {
+            //return 1;
+            return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 3 : 1;
         }
-        else if(vectorInput.x > 0.7f) {
-            return 3;
+        else if(vectorInput.x > 0.3f) {
+            //return 3;
+            return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 1 : 3;
         }
 
         return 0;
@@ -290,6 +354,39 @@ public class Hand : MonoBehaviour
                 return; // Return if we are not changing state
             }       
             scoreUI.SetActive(on);
+        }
+    }
+
+    // Allows the player to undo their most recent throw
+    private void Mulligan() {
+        // if(mulliganCount < 0){return;}
+        // Return ball
+        GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+        if (ball) {
+            ball.GetComponent<Ball>().ReturnToLastPosition();
+        }
+
+        // Undo throw on score
+        --score.currentLevelScore;
+
+        // --mulliganCount;
+    }
+
+    // Teleports the player directly to their ball - CURRENTLY UNSAFE
+    private void TeleportToBall() {
+        if (!isTeleporting) {
+            GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+            if (!ball) {
+                return;
+            }
+            Transform cameraRig = SteamVR_Render.Top().origin;
+            Vector3 headPos = SteamVR_Render.Top().head.position;
+            // Determine translation
+            Vector3 groundPosition = new Vector3(headPos.x, cameraRig.position.y, headPos.z);
+            Vector3 translation = ball.transform.position - groundPosition;
+
+            // Move the rig
+            StartCoroutine(MoveRig(cameraRig, translation));
         }
     }
 }
