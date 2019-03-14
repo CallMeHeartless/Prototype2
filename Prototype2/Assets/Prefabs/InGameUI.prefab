@@ -334,7 +334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9183115953372957816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ Canvas:
   m_GameObject: {fileID: 9183115953372957820}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 1
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 1.75
 --- !u!114 &9183115953372957821
 MonoBehaviour:
   m_ObjectHideFlags: 0

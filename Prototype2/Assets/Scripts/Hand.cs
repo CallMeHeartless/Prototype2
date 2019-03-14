@@ -31,6 +31,10 @@ public class Hand : MonoBehaviour
     [SerializeField]
     private float teleportDelay = 0.5f;
 
+    // UI
+    [SerializeField]
+    private miniUI levelScore;
+
     private void Awake() {
         handPose = GetComponent<SteamVR_Behaviour_Pose>();
         if (!handPose) {
@@ -124,6 +128,9 @@ public class Hand : MonoBehaviour
         // Count throws if object is ball
         if (heldObject.GetComponent<Ball>()) {
             score.Roll();
+            if (levelScore) {
+                levelScore.UpdateScore();
+            }
         }
 
         // Apply physics and break joint
