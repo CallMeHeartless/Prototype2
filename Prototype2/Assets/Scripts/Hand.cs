@@ -12,6 +12,8 @@ public class Hand : MonoBehaviour
     private SteamVR_Action_Boolean teleportAction = null;
     [SerializeField]
     private SteamVR_Action_Vector2 touchpadButtons = null;
+    [SerializeField]
+    private SteamVR_Action_Boolean gripTest = null;
 
     // Hand variables
     private SteamVR_Behaviour_Pose handPose = null;
@@ -54,7 +56,8 @@ public class Hand : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        // Picking up and releasing items
         if (grabAction.GetLastStateDown(handPose.inputSource)) {
             Pickup();
         }
@@ -70,6 +73,14 @@ public class Hand : MonoBehaviour
 
         if (teleportAction.GetLastStateUp(handPose.inputSource)) {
             TeleportUp();
+        }
+
+        // Display UI (test)
+        if (gripTest.GetLastStateDown(handPose.inputSource)) {
+            ToggleScoreUI(true);
+        }
+        if (gripTest.GetLastStateUp(handPose.inputSource)) {
+            ToggleScoreUI(false);
         }
 
         //if (teleportAction.GetLastStateDown(handPose.inputSource)) {
@@ -133,9 +144,7 @@ public class Hand : MonoBehaviour
         // Count throws if object is ball
         if (heldObject.GetComponent<Ball>()) {
             score.Roll();
-            //if (scoreUI) {
-            //    scoreUI..UpdateScore();
-            //}
+
         }
 
         // Apply physics and break joint

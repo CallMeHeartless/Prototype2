@@ -20,6 +20,6 @@ public class miniUI : MonoBehaviour
     //}
 
     public void UpdateScore() {
-        transform.GetChild(0).GetComponent<Text>().text = "Current Score: " + score.currentLevelScore + " | Best Score: ";
+        transform.GetComponentInChildren<Text>().text = "Current Score: " + score.currentLevelScore + " | Best Score: ";
     }
 }
