@@ -46,6 +46,7 @@ public class Hand : MonoBehaviour
         }
 
         teleportMarkerInstance = Instantiate(teleportPrefab);
+        teleportMarkerInstance.transform.position = transform.root.transform.position;
         teleportMarkerInstance.SetActive(false);
     }
 
