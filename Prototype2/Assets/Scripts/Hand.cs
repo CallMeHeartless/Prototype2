@@ -28,6 +28,7 @@ public class Hand : MonoBehaviour
     private GameObject teleportPrefab = null;
     private GameObject teleportMarkerInstance = null;
     private bool isTeleporting = false;
+    private static bool handsAreFree = true;
     [SerializeField]
     private float teleportDelay = 0.5f;
 
@@ -110,6 +111,8 @@ public class Hand : MonoBehaviour
             }
         }
 
+        // Indicate that the player is holding an object, so that they cannot teleport
+        handsAreFree = false;
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
@@ -141,8 +144,16 @@ public class Hand : MonoBehaviour
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
-        heldObject.GetComponent<Ball>().Release();
+        //heldObject.GetComponent<Ball>().Release();
+        Ball ball = heldObject.GetComponent<Ball>();
+        if (ball) {
+            ball.Release();
+        }
         heldObject = null;
+
+        // Allow the player to teleport
+        handsAreFree = true;
+
     }
 
     private Interactable GetNearestInteractable() {
