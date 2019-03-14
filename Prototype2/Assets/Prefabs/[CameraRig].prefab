@@ -312,7 +312,7 @@ MonoBehaviour:
   teleportPrefab: {fileID: 2841067343659465047, guid: 3260da1c8f1989a459c024ad81a4f96d,
     type: 3}
   teleportDelay: 0.5
-  scoreUI: {fileID: 0}
+  scoreUI: {fileID: 716512486827196847}
 --- !u!1 &5753633378949614195
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ MonoBehaviour:
   teleportPrefab: {fileID: 2841067343659465047, guid: 3260da1c8f1989a459c024ad81a4f96d,
     type: 3}
   teleportDelay: 0.5
-  scoreUI: {fileID: 0}
+  scoreUI: {fileID: 7020987206283778133}
 --- !u!1 &5754068236173758443
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +867,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9761940626f9968409615103bff6885e, type: 3}
+--- !u!1 &7020987206283778133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7517194223635047236, guid: 9761940626f9968409615103bff6885e,
+    type: 3}
+  m_PrefabInstance: {fileID: 665968677609929489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7020987206283871349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7517194223635218276, guid: 9761940626f9968409615103bff6885e,
@@ -950,6 +956,12 @@ PrefabInstance:
 --- !u!4 &716512486826712463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7517194223635218276, guid: 9761940626f9968409615103bff6885e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7035713466381181675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &716512486827196847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7517194223635047236, guid: 9761940626f9968409615103bff6885e,
     type: 3}
   m_PrefabInstance: {fileID: 7035713466381181675}
   m_PrefabAsset: {fileID: 0}
