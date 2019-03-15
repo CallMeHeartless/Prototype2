@@ -6,6 +6,7 @@ public class telCol : MonoBehaviour
 {
     public GameObject otherEnd;
     public Vector3 ExtraDis;
+    public float errorPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,9 @@ public class telCol : MonoBehaviour
         if(other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball") || other.gameObject.CompareTag("Pin"))
         {
             other.transform.position = otherEnd.transform.position;
-            other.GetComponent<Rigidbody>().velocity = Quaternion.Euler(transform.rotation.eulerAngles) * other.GetComponent<Rigidbody>().velocity;
+            Vector3 dummy = transform.rotation.eulerAngles;
+            dummy.y = dummy.y - errorPoint;
+            other.GetComponent<Rigidbody>().velocity = Quaternion.Euler(dummy) * other.GetComponent<Rigidbody>().velocity;
         }
     }
 }
