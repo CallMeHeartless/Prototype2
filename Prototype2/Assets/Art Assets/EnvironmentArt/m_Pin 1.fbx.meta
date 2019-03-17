@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: 6ed7019e479160f4fa9876705e0f8742
+guid: 43490432c3e1c6544b40a4caac43b849
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: blinn1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: m_PinCollider
+    4300000: m_Pin1
   externalObjects: {}
   materials:
     importMaterials: 1
