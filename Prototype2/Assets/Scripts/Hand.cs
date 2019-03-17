@@ -112,6 +112,7 @@ public class Hand : MonoBehaviour
 
                 default: {
                     ToggleScoreUI(false);
+                    teleportMarkerInstance.SetActive(false);
                     break;
                 }
             }
