@@ -15,8 +15,10 @@ public class Interactable : MonoBehaviour
     }
 
     public void ToggleHighlight(bool on) {
-        if(highlight)
-        highlight.SetActive(on);
+        if (highlight) {
+            highlight.SetActive(on);
+        }
+
     }
 
 }

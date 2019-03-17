@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55d99e97e88b616408a4186c055766d0
+guid: 7d39db41089d6554c97b20f1eadaaac0
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube6
+    4300000: sm_BoostPad
   externalObjects: {}
   materials:
     importMaterials: 1
