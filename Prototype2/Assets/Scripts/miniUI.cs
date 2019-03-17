@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class miniUI : MonoBehaviour
 {
+    [SerializeField]
+    private Text scoreText;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,6 @@ public class miniUI : MonoBehaviour
     //}
 
     public void UpdateScore() {
-        transform.GetComponentInChildren<Text>().text = "Current Score: " + score.currentLevelScore + " | Best Score: ";
+        scoreText.text = "Current Score: " + score.currentLevelScore + " | Best Score: ";
     }
 }
