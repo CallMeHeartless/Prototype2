@@ -317,12 +317,12 @@ public class Hand : MonoBehaviour
         }
 
         else if(vectorInput.x < -0.3f) {
-            //return 1;
-            return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 3 : 1;
+            return 1;
+            //return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 3 : 1;
         }
         else if(vectorInput.x > 0.3f) {
-            //return 3;
-            return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 1 : 3;
+            return 3;
+            //return handPose.inputSource == SteamVR_Input_Sources.LeftHand ? 1 : 3;
         }
 
         return 0;
