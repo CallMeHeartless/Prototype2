@@ -116,6 +116,8 @@ public class Hand : MonoBehaviour
                     break;
                 }
             }
+            ToggleScoreUI(false);
+            teleportMarkerInstance.SetActive(false);
         }
 
         if (teleportDown) {
