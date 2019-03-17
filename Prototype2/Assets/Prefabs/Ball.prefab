@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fcb64db16e81a20438c8c244fc821d95, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f31518caf02e54b9073b80d781fbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlight: {fileID: 0}
+  highlight: {fileID: 5632268980572112424}
   activeHand: {fileID: 0}
   hasReachedHand: 0
   translationSpeed: 10
@@ -312,6 +312,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 45d5a24fbc1e07e41b1ddb69b6942761, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6cba893f0d98446b2eff3f27c6d1ae, type: 3}
+--- !u!1 &5632268980572112424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 8a6cba893f0d98446b2eff3f27c6d1ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632268980572012680}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5632268980572150280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8a6cba893f0d98446b2eff3f27c6d1ae,

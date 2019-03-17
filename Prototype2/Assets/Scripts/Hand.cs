@@ -127,6 +127,15 @@ public class Hand : MonoBehaviour
         }
 
         interactables.Add(other.gameObject.GetComponent<Interactable>());
+        // Highlight closest object
+        Interactable closest = GetNearestInteractable();
+        foreach(Interactable item in interactables) {
+            if(item == closest) {
+                item.ToggleHighlight(true);
+            } else {
+                item.ToggleHighlight(false);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other) {
@@ -135,6 +144,7 @@ public class Hand : MonoBehaviour
         }
 
         interactables.Remove(other.gameObject.GetComponent<Interactable>());
+        other.gameObject.GetComponent<Interactable>().ToggleHighlight(false);
     }
 
     // Find the nearest interactable object and attempt to pick it up
