@@ -20,6 +20,7 @@ public class Hand : MonoBehaviour
     private FixedJoint grabJoint = null;
     [SerializeField]
     private float angularVelocityModifier = 3.0f;
+    private static int mulliganCount = 3;
 
     // Held object
     private Interactable heldObject = null;
@@ -340,7 +341,7 @@ public class Hand : MonoBehaviour
 
     // Allows the player to undo their most recent throw
     private void Mulligan() {
-        // if(mulliganCount < 0){return;}
+         if(mulliganCount < 1){return;}
         // Return ball
         GameObject ball = GameObject.FindGameObjectWithTag("Ball");
         if (ball) {
@@ -350,7 +351,7 @@ public class Hand : MonoBehaviour
         // Undo throw on score
         --score.currentLevelScore;
 
-        // --mulliganCount;
+         --mulliganCount;
     }
 
     // Teleports the player directly to their ball - CURRENTLY UNSAFE
