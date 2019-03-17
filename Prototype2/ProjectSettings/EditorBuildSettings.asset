@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Kerry_Test.unity
     guid: 48ea174e590f9294091283304cce3835
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial_Level.unity
     guid: 779bf2c0973f90f49adf8dc5174b20c8
   - enabled: 1

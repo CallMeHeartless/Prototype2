@@ -356,7 +356,7 @@ public class Hand : MonoBehaviour
 
     // Teleports the player directly to their ball - CURRENTLY UNSAFE
     private void TeleportToBall() {
-        if (!isTeleporting) {
+        if (!isTeleporting && handsAreFree) {
             GameObject ball = GameObject.FindGameObjectWithTag("Ball");
             if (!ball) {
                 return;

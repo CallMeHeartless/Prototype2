@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1722626197191447487}
   - component: {fileID: 5865629534408886244}
   - component: {fileID: 5066419299484190687}
-  - component: {fileID: 7786309868696566643}
   - component: {fileID: 7426820776482735253}
-  - component: {fileID: 6265904176271491400}
+  - component: {fileID: 8899176432586756063}
+  - component: {fileID: 4392827109798014507}
   m_Layer: 0
   m_Name: BasicPin
   m_TagString: Pin
@@ -89,20 +89,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &7786309868696566643
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3883262755673463098}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.07
-  m_Height: 0.42
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.21, z: 0}
 --- !u!114 &7426820776482735253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2c9b07e95ed794f8c44aab3abcf969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &6265904176271491400
-CapsuleCollider:
+--- !u!64 &8899176432586756063
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -125,10 +111,24 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.07
-  m_Height: 0.42
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.21, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 6ed7019e479160f4fa9876705e0f8742, type: 3}
+--- !u!64 &4392827109798014507
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883262755673463098}
+  m_Material: {fileID: 13400000, guid: 7663a1d92abb4234989bf64a54bcfd5f, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 6ed7019e479160f4fa9876705e0f8742, type: 3}
 --- !u!1001 &2899130899058787039
 PrefabInstance:
   m_ObjectHideFlags: 0
