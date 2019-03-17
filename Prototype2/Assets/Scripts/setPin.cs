@@ -13,6 +13,7 @@ public class setPin : MonoBehaviour
         score.Pins = AllPin.Length;
         score.levelName = nextLevelName;
         print(AllPin.Length);
+ 
     }
 
     // Update is called once per frame
