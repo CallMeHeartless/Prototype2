@@ -26,6 +26,7 @@ public class MultBallEffects : MonoBehaviour
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
                 player.transform.GetChild(0).GetComponent<SphereCollider>().radius = 1.25f;
                 player.transform.GetChild(1).GetComponent<SphereCollider>().radius = 1.25f;
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 currentBall = 0;
                 break;
             case 0:
@@ -37,6 +38,7 @@ public class MultBallEffects : MonoBehaviour
                 break;
             case 2:
                 GetComponent<Rigidbody>().mass = 8;
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 GameObject playerDO = GameObject.FindGameObjectWithTag("Player");
                 playerDO.transform.GetChild(0).GetComponent<SphereCollider>().radius = 6;
                 playerDO.transform.GetChild(1).GetComponent<SphereCollider>().radius = 6;

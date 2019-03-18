@@ -59,7 +59,8 @@ public class Ball : Interactable
     public void UpdateLastPosition() {
         if (GetComponent<MultBallEffects>().currentBall == 3)
         {
-            lastPosition = new Vector3 (transform.position.x, 0, transform.position.z);
+            lastPosition = new Vector3( transform.position.x, transform.position.y-1.5f, transform.position.z);
+
         }
         else
         {
@@ -72,5 +73,14 @@ public class Ball : Interactable
         transform.position = lastPosition;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (GetComponent<MultBallEffects>().currentBall == 3)
+        {
+            lastPosition = transform.position;
+
+        }
     }
 }
