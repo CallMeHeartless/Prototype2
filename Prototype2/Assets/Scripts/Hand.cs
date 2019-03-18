@@ -112,13 +112,23 @@ public class Hand : MonoBehaviour
 
                 default: {
                     ToggleScoreUI(false);
+                    teleportMarkerInstance.SetActive(false);
                     break;
                 }
             }
+            ToggleScoreUI(false);
+            teleportMarkerInstance.SetActive(false);
         }
 
         if (teleportDown) {
             TeleportDown();
+        }
+
+        if (gripTest.GetLastStateDown(handPose.inputSource)) {
+            ToggleScoreUI(true);
+        }
+        if (gripTest.GetLastStateUp(handPose.inputSource)) {
+            ToggleScoreUI(false);
         }
     }
 
@@ -356,7 +366,7 @@ public class Hand : MonoBehaviour
 
     // Teleports the player directly to their ball - CURRENTLY UNSAFE
     private void TeleportToBall() {
-        if (!isTeleporting) {
+        if (!isTeleporting && handsAreFree) {
             GameObject ball = GameObject.FindGameObjectWithTag("Ball");
             if (!ball) {
                 return;
