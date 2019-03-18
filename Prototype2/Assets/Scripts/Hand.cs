@@ -17,6 +17,8 @@ public class Hand : MonoBehaviour
     private SteamVR_Action_Vector2 touchpadButtons = null;
     [SerializeField]
     private SteamVR_Action_Boolean gripTest = null;
+    [SerializeField]
+    private SteamVR_Action_Boolean MenuButton = null;
 
     [Header("Controller properties")]
     // Hand variables
@@ -83,7 +85,6 @@ public class Hand : MonoBehaviour
         if (teleportAction.GetLastStateDown(handPose.inputSource)) {
 
             int specialAction = ConvertTouchPadButtons(touchpadButtons.GetLastAxis(handPose.inputSource));
-            print(specialAction);
             switch (specialAction) {
                 // Enable teleporting
                 case 0: {
@@ -140,6 +141,9 @@ public class Hand : MonoBehaviour
         }
         if (gripTest.GetLastStateUp(handPose.inputSource)) {
             ToggleScoreUI(false);
+        }
+        if (MenuButton.GetLastStateDown(handPose.inputSource)) {
+            GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
         }
     }
 
