@@ -15,7 +15,9 @@ public class Ball : Interactable
     [SerializeField]
     private float grabThreshold = 0.01f;
     public float increaseSpeed;
-
+    public float increaseHeight;
+    public bool canMove = true;
+    public float delay = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,17 +46,50 @@ public class Ball : Interactable
         if (GetComponent<MultBallEffects>().currentBall == 1) {
             rb.velocity = new Vector3( rb.velocity.x * increaseSpeed, rb.velocity.y, rb.velocity.z * increaseSpeed);
         }
+        else
+        {
+            if (GetComponent<MultBallEffects>().currentBall == 2)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * increaseHeight, rb.velocity.z);
+            }
+        }
         activeHand = null;
         hasReachedHand = false;
     }
 
     public void UpdateLastPosition() {
-        lastPosition = transform.position;
+        if (GetComponent<MultBallEffects>().currentBall == 3)
+        {
+            lastPosition = new Vector3( transform.position.x, transform.position.y-1.5f, transform.position.z);
+
+        }
+        else
+        {
+            lastPosition = transform.position;
+        }
+       
     }
 
     public void ReturnToLastPosition() {
         transform.position = lastPosition;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (GetComponent<MultBallEffects>().currentBall == 3)
+        {
+            StartCoroutine(CouldMove());
+
+        }
+        
+    }
+    IEnumerator CouldMove()
+    {
+        lastPosition = transform.position;
+        canMove = false;
+        yield return new WaitForSeconds(delay);
+        canMove = true;
     }
 }

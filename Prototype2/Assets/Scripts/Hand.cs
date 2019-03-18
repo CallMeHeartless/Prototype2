@@ -188,7 +188,10 @@ public class Hand : MonoBehaviour
             // If the object is a ball, update the ball's last position
             Ball ball = heldObject.GetComponent<Ball>();
             if (ball) {
-                ball.UpdateLastPosition();
+                if (ball.canMove == true)
+                {
+                    ball.UpdateLastPosition();
+                }
             }
         }
 
