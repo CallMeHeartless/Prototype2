@@ -27,7 +27,11 @@ public class MagicSpaceCubeController : MonoBehaviour
             // Increase score
             score.playerScore += pointsValue;
             // Trigger animation
-
+            anim.SetTrigger("Pickup");
         }
+    }
+
+    public void RemoveCube() {
+        Destroy(gameObject);
     }
 }
