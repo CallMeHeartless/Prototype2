@@ -15,16 +15,13 @@ public class score : MonoBehaviour
    
     public static void Nextlevel()
     {
-        if (Pins == 0)
-        {
-           
+        
             if(levelName != "") {
                 SceneManager.LoadScene(levelName);
             } else {
                 print("Level completed");
             }
 
-        }
     
     }
     public static void Roll()

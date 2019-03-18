@@ -9,10 +9,10 @@ public class setPin : MonoBehaviour
     void Start()
     {
      
-        GameObject[] AllPin = GameObject.FindGameObjectsWithTag("Pin");
-        score.Pins = AllPin.Length;
+       // GameObject[] AllPin = GameObject.FindGameObjectsWithTag("Pin");
+        //score.Pins = AllPin.Length;
         score.levelName = nextLevelName;
-        print(AllPin.Length);
+        //print(AllPin.Length);
  
     }
 

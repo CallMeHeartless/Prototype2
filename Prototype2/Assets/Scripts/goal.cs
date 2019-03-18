@@ -24,7 +24,7 @@ public class goal : MonoBehaviour
             if (collision.gameObject.CompareTag("Interactable") || collision.gameObject.CompareTag("Ball") || collision.gameObject.CompareTag("Pin"))
             {
                 fristhit = false;
-                score.Pins--;
+                score.Pins++;
                 StartCoroutine(waitAbit());
 
             }
@@ -36,7 +36,7 @@ public class goal : MonoBehaviour
     IEnumerator waitAbit()
     {
         yield return new WaitForSeconds(4);
-        score.Nextlevel();
+        
         print(score.Pins);
         Destroy(gameObject);
         //
