@@ -14,6 +14,7 @@ public class Ball : Interactable
     private float translationSpeed = 3.0f;
     [SerializeField]
     private float grabThreshold = 0.01f;
+    public float increaseSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +41,9 @@ public class Ball : Interactable
     }
 
     public void Release() {
-        //if (GetComponent<MultBallEffects>().currentBall == 1)
-        //{
-        //    //gameObject.GetComponent<Rigidbody>().velocity *= 10;
-        //}
+        if (GetComponent<MultBallEffects>().currentBall == 1) {
+            rb.velocity = new Vector3( rb.velocity.x * increaseSpeed, rb.velocity.y, rb.velocity.z * increaseSpeed);
+        }
         activeHand = null;
         hasReachedHand = false;
     }

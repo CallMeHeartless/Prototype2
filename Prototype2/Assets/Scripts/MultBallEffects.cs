@@ -20,10 +20,12 @@ public class MultBallEffects : MonoBehaviour
         if (currentBall != 3)
         {
             currentBall++;
+            
         }
         else
         {
             currentBall = 0;
         }
+        Debug.Log(currentBall);
     }
 }
