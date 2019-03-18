@@ -14,18 +14,38 @@ public class MultBallEffects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //1 speed
+        //2 weight
+        //3 is boomrange
 
     }
     public void DifferentBall(){
-        if (currentBall != 3)
-        {
-            currentBall++;
-            
+
+        switch (currentBall) { 
+            case 3:
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                player.transform.GetChild(0).GetComponent<SphereCollider>().radius = 1.25f;
+                player.transform.GetChild(1).GetComponent<SphereCollider>().radius = 1.25f;
+                currentBall = 0;
+                break;
+            case 0:
+                currentBall++;
+                break;
+            case 1:
+                GetComponent<Rigidbody>().mass = 2;
+                currentBall++;
+                break;
+            case 2:
+                GetComponent<Rigidbody>().mass = 8;
+                GameObject playerDO = GameObject.FindGameObjectWithTag("Player");
+                playerDO.transform.GetChild(0).GetComponent<SphereCollider>().radius = 6;
+                playerDO.transform.GetChild(1).GetComponent<SphereCollider>().radius = 6;
+                currentBall++;
+                break;
+            default:
+                break;
         }
-        else
-        {
-            currentBall = 0;
-        }
+        
         Debug.Log(currentBall);
     }
 }
