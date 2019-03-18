@@ -5,7 +5,10 @@ using Valve.VR;
 
 public class Hand : MonoBehaviour
 {
+
+    #region member_variables
     // Actions
+    [Header("Action references")]
     [SerializeField]
     private SteamVR_Action_Boolean grabAction = null;
     [SerializeField]
@@ -15,6 +18,7 @@ public class Hand : MonoBehaviour
     [SerializeField]
     private SteamVR_Action_Boolean gripTest = null;
 
+    [Header("Controller properties")]
     // Hand variables
     private SteamVR_Behaviour_Pose handPose = null;
     private FixedJoint grabJoint = null;
@@ -37,8 +41,15 @@ public class Hand : MonoBehaviour
     private float teleportDelay = 0.5f;
 
     // UI
+    [Header("UI References")]
     [SerializeField]
     private GameObject scoreUI;
+    [SerializeField]
+    private GameObject inGameMenu;
+    [SerializeField]
+    private GameObject holoLevel;
+
+    #endregion
 
     private void Awake() {
         handPose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -379,6 +390,23 @@ public class Hand : MonoBehaviour
 
             // Move the rig
             StartCoroutine(MoveRig(cameraRig, translation));
+        }
+    }
+
+    private void ToggleMenu() {
+        if (!inGameMenu) {
+            return;
+        }
+
+        // Check if menu objects are already enabled
+        if (inGameMenu.activeSelf) {
+            // Disable them
+            inGameMenu.SetActive(false);
+            holoLevel.SetActive(false);
+        } else {
+            // Enable them
+            inGameMenu.SetActive(true);
+            holoLevel.SetActive(true);
         }
     }
 }
