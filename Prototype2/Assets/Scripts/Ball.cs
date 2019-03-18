@@ -40,6 +40,10 @@ public class Ball : Interactable
     }
 
     public void Release() {
+        //if (GetComponent<MultBallEffects>().currentBall == 1)
+        //{
+        //    //gameObject.GetComponent<Rigidbody>().velocity *= 10;
+        //}
         activeHand = null;
         hasReachedHand = false;
     }
