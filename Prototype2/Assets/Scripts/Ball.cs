@@ -16,7 +16,8 @@ public class Ball : Interactable
     private float grabThreshold = 0.01f;
     public float increaseSpeed;
     public float increaseHeight;
-
+    public bool canMove = true;
+    public float delay = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,8 +80,16 @@ public class Ball : Interactable
     {
         if (GetComponent<MultBallEffects>().currentBall == 3)
         {
-            lastPosition = transform.position;
+            StartCoroutine(CouldMove());
 
         }
+        
+    }
+    IEnumerator CouldMove()
+    {
+        lastPosition = transform.position;
+        canMove = false;
+        yield return new WaitForSeconds(delay);
+        canMove = true;
     }
 }
