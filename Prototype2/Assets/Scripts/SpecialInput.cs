@@ -13,6 +13,7 @@ public class SpecialInput : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        score.playerScore = 0;
     }
 
     // Update is called once per frame
