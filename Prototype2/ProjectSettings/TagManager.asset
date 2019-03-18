@@ -11,6 +11,7 @@ TagManager:
   - Ball
   - Pin
   - End
+  - Gate
   layers:
   - Default
   - TransparentFX
