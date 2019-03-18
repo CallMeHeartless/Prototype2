@@ -72,7 +72,6 @@ public class Hand : MonoBehaviour
         if (teleportAction.GetLastStateDown(handPose.inputSource)) {
 
             int specialAction = ConvertTouchPadButtons(touchpadButtons.GetLastAxis(handPose.inputSource));
-            print(specialAction);
             switch (specialAction) {
                 // Enable teleporting
                 case 0: {
