@@ -15,6 +15,7 @@ public class Ball : Interactable
     [SerializeField]
     private float grabThreshold = 0.01f;
     public float increaseSpeed;
+    public float increaseHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +45,27 @@ public class Ball : Interactable
         if (GetComponent<MultBallEffects>().currentBall == 1) {
             rb.velocity = new Vector3( rb.velocity.x * increaseSpeed, rb.velocity.y, rb.velocity.z * increaseSpeed);
         }
+        else
+        {
+            if (GetComponent<MultBallEffects>().currentBall == 2)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * increaseHeight, rb.velocity.z);
+            }
+        }
         activeHand = null;
         hasReachedHand = false;
     }
 
     public void UpdateLastPosition() {
-        lastPosition = transform.position;
+        if (GetComponent<MultBallEffects>().currentBall == 3)
+        {
+            lastPosition = new Vector3 (transform.position.x, 0, transform.position.z);
+        }
+        else
+        {
+            lastPosition = transform.position;
+        }
+       
     }
 
     public void ReturnToLastPosition() {
