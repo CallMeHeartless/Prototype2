@@ -123,6 +123,13 @@ public class Hand : MonoBehaviour
         if (teleportDown) {
             TeleportDown();
         }
+
+        if (gripTest.GetLastStateDown(handPose.inputSource)) {
+            ToggleScoreUI(true);
+        }
+        if (gripTest.GetLastStateUp(handPose.inputSource)) {
+            ToggleScoreUI(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
