@@ -331,7 +331,7 @@ public class Hand : MonoBehaviour
             grabJoint.connectedBody = targetBody;
         }
         //if(heldObject.GetComponent<Ball>())
-        //targetBody.isKinematic = false;
+        targetBody.isKinematic = false;
 
         // Haptic feedback
         SpecialInput.Pulse(0.2f, 150.0f, 15.0f, handPose.inputSource);
