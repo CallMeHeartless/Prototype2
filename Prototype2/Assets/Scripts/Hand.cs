@@ -177,7 +177,7 @@ public class Hand : MonoBehaviour
     // Find the nearest interactable object and attempt to pick it up
     public void Pickup() {
         heldObject = GetNearestInteractable();
-
+        print("Nearest: " + heldObject.name);
         if (!heldObject) {
             return;
         }
