@@ -128,6 +128,7 @@ public class Hand : MonoBehaviour
                     break;
                 }
             }
+            teleportDown = false;
             ToggleScoreUI(false);
             teleportMarkerInstance.SetActive(false);
         }
@@ -377,7 +378,7 @@ public class Hand : MonoBehaviour
         }
 
         // Undo throw on score
-        --score.currentLevelScore;
+        --score.playerThrowCount;
 
          --mulliganCount;
     }

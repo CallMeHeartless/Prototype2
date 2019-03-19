@@ -6,6 +6,8 @@ public class GateMaster : MonoBehaviour
 {
     [SerializeField]
     private GameObject portal;
+    [SerializeField][Tooltip("The number of gates that must be triggered in order for the portal to appear")]
+    private float numberOfGatesRequired;
     //Transform[] childGates;
     List<Transform> childGates = new List<Transform>();
 
@@ -24,7 +26,7 @@ public class GateMaster : MonoBehaviour
     }
 
     public void UpdateGateState() {
-        if (CheckGatesAreClosed()) {
+        if (GetNumberOfClosedGates() >= numberOfGatesRequired) {
             portal.SetActive(true);
         }
     }
@@ -40,5 +42,17 @@ public class GateMaster : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private int GetNumberOfClosedGates() {
+        int count = 0;
+        if (childGates[0]) {
+            foreach(Transform gate in childGates) {
+                if (gate.gameObject.GetComponent<GateController>().hasBeenTriggered) {
+                    ++count;
+                }
+            }
+        }
+        return count;
     }
 }
