@@ -378,7 +378,7 @@ public class Hand : MonoBehaviour
         }
 
         // Undo throw on score
-        --score.currentLevelScore;
+        --score.playerThrowCount;
 
          --mulliganCount;
     }
