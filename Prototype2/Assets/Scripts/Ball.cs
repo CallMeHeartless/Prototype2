@@ -29,13 +29,40 @@ public class Ball : Interactable
     private void FixedUpdate() {
         if (activeHand && !hasReachedHand) {
 
-            Vector3 direction = activeHand.transform.position - transform.position;
-            if (direction.sqrMagnitude > grabThreshold) {
-                rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
-            } else {
-                //rb.MovePosition(activeHand.transform.position);
-                hasReachedHand = true;
-                activeHand.AttachToJoint();
+            if (GetComponent<MultBallEffects>().currentBall != 3)
+            {
+                lastPosition = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+
+
+                Vector3 direction = activeHand.transform.position - transform.position;
+                if (direction.sqrMagnitude > grabThreshold)
+                {
+                    rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
+                }
+                else
+                {
+                    //rb.MovePosition(activeHand.transform.position);
+                    hasReachedHand = true;
+                    activeHand.AttachToJoint();
+                }
+            }
+            else {
+                if (!canMove)//doesn't hit something
+                  {
+                    Vector3 direction = new Vector3(activeHand.transform.position.x, 0, activeHand.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
+                        
+                        if (direction.sqrMagnitude > grabThreshold) {
+
+                            rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
+
+    
+                        } else {
+                            //rb.MovePosition(activeHand.transform.position);
+                            hasReachedHand = true;
+                            activeHand.AttachToJoint();
+                        }
+                }
+
             }
 
 
@@ -58,16 +85,9 @@ public class Ball : Interactable
     }
 
     public void UpdateLastPosition() {
-        if (GetComponent<MultBallEffects>().currentBall == 3)
-        {
-            lastPosition = new Vector3( transform.position.x, transform.position.y-1.5f, transform.position.z);
 
-        }
-        else
-        {
-            lastPosition = transform.position;
-        }
-       
+        lastPosition = transform.position;
+     
     }
 
     public void ReturnToLastPosition() {
@@ -87,7 +107,7 @@ public class Ball : Interactable
     }
     IEnumerator CouldMove()
     {
-        lastPosition = transform.position;
+        //lastPosition = transform.position;
         canMove = false;
         yield return new WaitForSeconds(delay);
         canMove = true;
