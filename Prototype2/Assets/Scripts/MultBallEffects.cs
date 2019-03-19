@@ -5,6 +5,8 @@ using UnityEngine;
 public class MultBallEffects : MonoBehaviour
 {
     public int currentBall = 0;
+    public PhysicMaterial bounce;
+    public PhysicMaterial noBounce;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +24,13 @@ public class MultBallEffects : MonoBehaviour
     public void DifferentBall(){
 
         switch (currentBall) { 
-            case 3:
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                player.transform.GetChild(0).GetComponent<SphereCollider>().radius = 1.25f;
-                player.transform.GetChild(1).GetComponent<SphereCollider>().radius = 1.25f;
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                currentBall = 0;
-                break;
+           
             case 0:
+                GameObject[] AllFloor = GameObject.FindGameObjectsWithTag("Walkable");
+                for (int i = 0; i < AllFloor.Length; i++)
+                {
+                    AllFloor[i].GetComponent<MeshCollider>().material = noBounce;
+                }
                 currentBall++;
                 break;
             case 1:
@@ -43,6 +44,21 @@ public class MultBallEffects : MonoBehaviour
                 playerDO.transform.GetChild(0).GetComponent<SphereCollider>().radius = 6;
                 playerDO.transform.GetChild(1).GetComponent<SphereCollider>().radius = 6;
                 currentBall++;
+                break;
+            case 3:
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                player.transform.GetChild(0).GetComponent<SphereCollider>().radius = 1.25f;
+                player.transform.GetChild(1).GetComponent<SphereCollider>().radius = 1.25f;
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                currentBall++;
+                break;
+            case 4:
+                GameObject[] AllFloorB = GameObject.FindGameObjectsWithTag("Walkable");
+                for (int i = 0; i < AllFloorB.Length; i++)
+                {
+                    AllFloorB[i].GetComponent<MeshCollider>().material = bounce;
+                }
+                currentBall = 0;
                 break;
             default:
                 break;
