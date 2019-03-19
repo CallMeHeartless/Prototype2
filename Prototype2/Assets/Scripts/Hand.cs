@@ -144,7 +144,8 @@ public class Hand : MonoBehaviour
             ToggleScoreUI(false);
         }
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
-            GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+            //GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+            ToggleMenu();
         }
 
 
@@ -417,7 +418,11 @@ public class Hand : MonoBehaviour
         if (inGameMenu.activeSelf) {
             // Disable them
             inGameMenu.SetActive(false);
-            holoLevel.SetActive(false);
+            if (holoLevel) {
+                holoLevel.SetActive(false);
+                holoLevel.transform.position = transform.position;// + new Vector3(0, 1, 0.5f);
+            }
+
         } else {
             // Enable them
             inGameMenu.SetActive(true);
