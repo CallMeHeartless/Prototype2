@@ -230,11 +230,7 @@ public class Hand : MonoBehaviour
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
-        //heldObject.GetComponent<Ball>().Release();
-        Ball ball = heldObject.GetComponent<Ball>();
-        if (ball) {
-            ball.Release();
-        }
+        heldObject.Release();
         heldObject = null;
 
         // Allow the player to teleport
@@ -263,9 +259,9 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        //if (heldObject || isTeleporting || !handsAreFree) {//
-        //    return;
-        //}
+        if (heldObject || isTeleporting || !handsAreFree) {//
+            return;
+        }
 
         // Enable teleport marker if disabled
         if (!teleportMarkerInstance.activeSelf) {
@@ -341,16 +337,18 @@ public class Hand : MonoBehaviour
     public void ReleaseFromJoint(Rigidbody targetBody) {
         if (heldObject.GetComponent<Ball>()) {
             targetBody.isKinematic = false;
+        } else {
+            targetBody.isKinematic = true;
         }
 
         grabJoint.connectedBody = null;
     }
 
     private int ConvertTouchPadButtons(Vector2 vectorInput) {
-        if(vectorInput.y > 0.5) {
+        if(vectorInput.y > 0.65) {
             return 0;
         }
-        else if(vectorInput.y < -0.5f) {
+        else if(vectorInput.y < -0.65f) {
             return 2;
         }
 
