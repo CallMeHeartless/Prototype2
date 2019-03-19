@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class miniUI : MonoBehaviour
 {
@@ -14,15 +15,17 @@ public class miniUI : MonoBehaviour
         // Reset score when the level is loaded
         score.playerThrowCount = 0;
         score.playerScore = 0;
+        score.levelName = SceneManager.GetActiveScene().name;
+        print(score.levelName);
     }
 
     public void UpdateScore() {
         int totalScore = score.playerScore - score.playerThrowCount;
         scoreText.text = "Current Score: " + score.playerScore + " | Throws: " + score.playerThrowCount + "\nTotal Score: " + totalScore;
         // Update high score
-        if (totalScore > PlayerPrefs.GetInt("HighScore", 0)) {
-            PlayerPrefs.SetInt("HighScore", totalScore);
+        if (totalScore > PlayerPrefs.GetInt("HighScore" + score.levelName, 0)) {
+            PlayerPrefs.SetInt("HighScore" + score.levelName, totalScore);
         }
-        scoreText.text += "\nHigh Score: " + PlayerPrefs.GetInt("HighScore", 0);
+        scoreText.text += "\nHigh Score: " + PlayerPrefs.GetInt("HighScore" + score.levelName, 0);
     }
 }
