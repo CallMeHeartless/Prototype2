@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class score : MonoBehaviour
 {
     public static int[] scoreBoard = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };//9
-    public static int currentLevelScore = 0;
+    public static int playerThrowCount = 0;
     public static int levelNumber = 0;
     public static int playerScore = 0;
     public static string levelName;
@@ -25,7 +25,7 @@ public class score : MonoBehaviour
     }
     public static void Roll()
     {
-        currentLevelScore++;
+        playerThrowCount++;
     }
 
     public void loadScore() {
