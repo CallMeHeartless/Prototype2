@@ -9,11 +9,9 @@ public class Ball : Interactable
     private Rigidbody rb;
 
     private Vector3 lastPosition;
-    public bool hasReachedHand = false;
-    [SerializeField]
-    private float translationSpeed = 3.0f;
-    [SerializeField]
-    private float grabThreshold = 0.01f;
+    
+
+    
     public float increaseSpeed;
     public float increaseHeight;
     public bool canMove = true;
@@ -26,7 +24,7 @@ public class Ball : Interactable
         
     }
 
-    private void FixedUpdate() {
+    protected override void FixedUpdate() {
         if (activeHand && !hasReachedHand) {
 
             if (GetComponent<MultBallEffects>().currentBall != 3)
@@ -69,7 +67,7 @@ public class Ball : Interactable
         }
     }
 
-    public void Release() {
+    public override void Release() {
         if (GetComponent<MultBallEffects>().currentBall == 1) {
             rb.velocity = new Vector3( rb.velocity.x * increaseSpeed, rb.velocity.y, rb.velocity.z * increaseSpeed);
         }
@@ -80,8 +78,7 @@ public class Ball : Interactable
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * increaseHeight, rb.velocity.z);
             }
         }
-        activeHand = null;
-        hasReachedHand = false;
+        base.Release();
     }
 
     public void UpdateLastPosition() {

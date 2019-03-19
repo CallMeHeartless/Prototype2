@@ -146,6 +146,8 @@ public class Hand : MonoBehaviour
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
             GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
         }
+
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -177,10 +179,11 @@ public class Hand : MonoBehaviour
     // Find the nearest interactable object and attempt to pick it up
     public void Pickup() {
         heldObject = GetNearestInteractable();
-
+        
         if (!heldObject) {
             return;
         }
+        print("Nearest: " + heldObject.name);
 
         // Force other hand to drop if already held
         if (heldObject.activeHand) {
@@ -260,9 +263,9 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject || isTeleporting || !handsAreFree) {
-            return;
-        }
+        //if (heldObject || isTeleporting || !handsAreFree) {//
+        //    return;
+        //}
 
         // Enable teleport marker if disabled
         if (!teleportMarkerInstance.activeSelf) {
@@ -324,8 +327,11 @@ public class Hand : MonoBehaviour
         // Force the object to be mapped to its (offset) and attach it to the fixed joint
         heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        grabJoint.connectedBody = targetBody;
-        targetBody.isKinematic = false;
+        if (targetBody) {
+            grabJoint.connectedBody = targetBody;
+        }
+        //if(heldObject.GetComponent<Ball>())
+        //targetBody.isKinematic = false;
 
         // Haptic feedback
         SpecialInput.Pulse(0.2f, 150.0f, 15.0f, handPose.inputSource);
@@ -333,7 +339,10 @@ public class Hand : MonoBehaviour
 
     // Detaches an interactable object from the hand's fixed joint, freeing it
     public void ReleaseFromJoint(Rigidbody targetBody) {
-        targetBody.isKinematic = false;
+        if (heldObject.GetComponent<Ball>()) {
+            targetBody.isKinematic = false;
+        }
+
         grabJoint.connectedBody = null;
     }
 
