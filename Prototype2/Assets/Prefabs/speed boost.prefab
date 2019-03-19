@@ -253,12 +253,12 @@ PrefabInstance:
     - target: {fileID: 7826870176375105477, guid: 3c7a90fcd239d4e479d4c541d7314fde,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.077999994
+      value: 0.089
       objectReference: {fileID: 0}
     - target: {fileID: 7826870176375105477, guid: 3c7a90fcd239d4e479d4c541d7314fde,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.10216809
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: 7826870176375105477, guid: 3c7a90fcd239d4e479d4c541d7314fde,
         type: 3}
@@ -309,6 +309,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703259671886484242, guid: 3c7a90fcd239d4e479d4c541d7314fde,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703259671886484242, guid: 3c7a90fcd239d4e479d4c541d7314fde,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8557205
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703259671886484242, guid: 3c7a90fcd239d4e479d4c541d7314fde,
+        type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703259671886484242, guid: 3c7a90fcd239d4e479d4c541d7314fde,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0.09019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703259671886484242, guid: 3c7a90fcd239d4e479d4c541d7314fde,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.48627454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703259671886484242, guid: 3c7a90fcd239d4e479d4c541d7314fde,
+        type: 3}
+      propertyPath: UVModule.tilesY
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c7a90fcd239d4e479d4c541d7314fde, type: 3}

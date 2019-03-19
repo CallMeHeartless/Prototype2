@@ -538,8 +538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetAction:
-    actionPath: 
-    needsReinit: 1
+    actionPath: /actions/default/in/MenuButton
+    needsReinit: 0
   hapticAction:
     actionPath: /actions/default/out/Haptic
     needsReinit: 0
