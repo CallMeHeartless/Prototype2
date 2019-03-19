@@ -9,11 +9,9 @@ public class Ball : Interactable
     private Rigidbody rb;
 
     private Vector3 lastPosition;
-    public bool hasReachedHand = false;
-    [SerializeField]
-    private float translationSpeed = 3.0f;
-    [SerializeField]
-    private float grabThreshold = 0.01f;
+    
+
+    
     public float increaseSpeed;
     public float increaseHeight;
     public bool canMove = true;
@@ -26,23 +24,50 @@ public class Ball : Interactable
         
     }
 
-    private void FixedUpdate() {
+    protected override void FixedUpdate() {
         if (activeHand && !hasReachedHand) {
 
-            Vector3 direction = activeHand.transform.position - transform.position;
-            if (direction.sqrMagnitude > grabThreshold) {
-                rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
-            } else {
-                //rb.MovePosition(activeHand.transform.position);
-                hasReachedHand = true;
-                activeHand.AttachToJoint();
+            if (GetComponent<MultBallEffects>().currentBall != 3)
+            {
+                lastPosition = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+
+
+                Vector3 direction = activeHand.transform.position - transform.position;
+                if (direction.sqrMagnitude > grabThreshold)
+                {
+                    rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
+                }
+                else
+                {
+                    //rb.MovePosition(activeHand.transform.position);
+                    hasReachedHand = true;
+                    activeHand.AttachToJoint();
+                }
+            }
+            else {
+                if (!canMove)//doesn't hit something
+                  {
+                    Vector3 direction = new Vector3(activeHand.transform.position.x, 0, activeHand.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
+                        
+                        if (direction.sqrMagnitude > grabThreshold) {
+
+                            rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
+
+    
+                        } else {
+                            //rb.MovePosition(activeHand.transform.position);
+                            hasReachedHand = true;
+                            activeHand.AttachToJoint();
+                        }
+                }
+
             }
 
 
         }
     }
 
-    public void Release() {
+    public override void Release() {
         if (GetComponent<MultBallEffects>().currentBall == 1) {
             rb.velocity = new Vector3( rb.velocity.x * increaseSpeed, rb.velocity.y, rb.velocity.z * increaseSpeed);
         }
@@ -53,21 +78,13 @@ public class Ball : Interactable
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * increaseHeight, rb.velocity.z);
             }
         }
-        activeHand = null;
-        hasReachedHand = false;
+        base.Release();
     }
 
     public void UpdateLastPosition() {
-        if (GetComponent<MultBallEffects>().currentBall == 3)
-        {
-            lastPosition = new Vector3( transform.position.x, transform.position.y-1.5f, transform.position.z);
 
-        }
-        else
-        {
-            lastPosition = transform.position;
-        }
-       
+        lastPosition = transform.position;
+     
     }
 
     public void ReturnToLastPosition() {
@@ -87,7 +104,7 @@ public class Ball : Interactable
     }
     IEnumerator CouldMove()
     {
-        lastPosition = transform.position;
+        //lastPosition = transform.position;
         canMove = false;
         yield return new WaitForSeconds(delay);
         canMove = true;
