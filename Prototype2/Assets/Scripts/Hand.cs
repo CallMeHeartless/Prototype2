@@ -146,6 +146,8 @@ public class Hand : MonoBehaviour
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
             GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
         }
+
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -177,10 +179,11 @@ public class Hand : MonoBehaviour
     // Find the nearest interactable object and attempt to pick it up
     public void Pickup() {
         heldObject = GetNearestInteractable();
-        print("Nearest: " + heldObject.name);
+        
         if (!heldObject) {
             return;
         }
+        print("Nearest: " + heldObject.name);
 
         // Force other hand to drop if already held
         if (heldObject.activeHand) {
@@ -260,9 +263,9 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject || isTeleporting || !handsAreFree) {
-            return;
-        }
+        //if (heldObject || isTeleporting || !handsAreFree) {//
+        //    return;
+        //}
 
         // Enable teleport marker if disabled
         if (!teleportMarkerInstance.activeSelf) {
