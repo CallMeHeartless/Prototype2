@@ -7,6 +7,8 @@ public class MagicSpaceCubeController : MonoBehaviour
     // Member variables
     [SerializeField]
     private int pointsValue = 5;
+    [SerializeField]
+    private float speedMultiplier = 1.25f;
     private Animator anim;
     private bool hasBeenTriggered = false;
 
@@ -28,6 +30,9 @@ public class MagicSpaceCubeController : MonoBehaviour
             score.playerScore += pointsValue;
             // Trigger animation
             anim.SetTrigger("Pickup");
+
+            // Apply speed boost
+            other.GetComponent<Rigidbody>().velocity *= speedMultiplier;
         }
     }
 
