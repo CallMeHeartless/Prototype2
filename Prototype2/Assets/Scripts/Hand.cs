@@ -426,6 +426,8 @@ public class Hand : MonoBehaviour
 
         // Check if menu objects are already enabled
         if (inGameMenu.activeSelf) {
+            // Reset hands radius to be 1.25
+            SetHandColliderDetectionRadius(1.25f);
             // Disable them
             inGameMenu.SetActive(false);
             if (holoLevel) {
@@ -434,9 +436,20 @@ public class Hand : MonoBehaviour
             }
 
         } else {
+            // Reduce detection radius
+            SetHandColliderDetectionRadius(0.01f);
             // Enable them
             inGameMenu.SetActive(true);
             holoLevel.SetActive(true);
+        }
+    }
+
+    private void SetHandColliderDetectionRadius(float radius) {
+        SphereCollider[] hands = transform.root.GetComponentsInChildren<SphereCollider>();
+        if (hands[0]) {
+            foreach(SphereCollider hand in hands) {
+                hand.radius = radius;
+            }
         }
     }
 }
