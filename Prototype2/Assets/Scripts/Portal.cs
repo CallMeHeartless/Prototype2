@@ -30,6 +30,7 @@ public class Portal : MonoBehaviour
         // Turn on VFX
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(3).gameObject.SetActive(true);
+        print("Portal turned on");
     }
 
 }
