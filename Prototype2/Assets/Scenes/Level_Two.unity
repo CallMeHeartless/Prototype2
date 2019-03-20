@@ -769,6 +769,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144923997}
     m_Modifications:
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside
+      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -834,11 +839,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.0100000035
       objectReference: {fileID: 0}
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
 --- !u!4 &228318137 stripped
@@ -854,6 +854,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 534611996}
     m_Modifications:
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -918,11 +923,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0100000035
-      objectReference: {fileID: 0}
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
@@ -1614,6 +1614,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 534611996}
     m_Modifications:
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1668,11 +1673,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
@@ -2307,6 +2307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7209675868089126389, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: m_Name
+      value: Portal
+      objectReference: {fileID: 0}
     - target: {fileID: 8973174886620504425, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2362,15 +2367,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
-    - target: {fileID: 7209675868089126389, guid: e6613d91094e1814aad9af9bd50deb66,
+    - target: {fileID: 3089110730339705480, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
-      propertyPath: m_Name
-      value: Portal
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3758967830196328284, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
       propertyPath: nextLevel
       value: Level_Three
+      objectReference: {fileID: 0}
+    - target: {fileID: 4692131744052603535, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133478774074871954, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6613d91094e1814aad9af9bd50deb66, type: 3}
@@ -5993,6 +6008,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144923997}
     m_Modifications:
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6047,11 +6067,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
