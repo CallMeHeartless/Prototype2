@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEngine.SceneManagement;
 
 public class SpecialInput : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class SpecialInput : MonoBehaviour
     private void Awake() {
         instance = this;
         score.playerScore = 0;
+        // Reset score when the level is loaded
+        score.playerThrowCount = 0;
+        score.playerScore = 0;
+        score.levelName = SceneManager.GetActiveScene().name;
+        print(score.levelName);
     }
 
     // Update is called once per frame
