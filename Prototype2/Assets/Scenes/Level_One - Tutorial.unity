@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024357613, g: 0.1221643, b: 0.33525804, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.019557463, g: 0.09807491, b: 0.26909834, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -682,11 +682,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144923997}
     m_Modifications:
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -741,6 +736,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
@@ -832,11 +832,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144923997}
     m_Modifications:
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside
-      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -891,6 +886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
@@ -1051,11 +1051,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7209675868089126389, guid: e6613d91094e1814aad9af9bd50deb66,
-        type: 3}
-      propertyPath: m_Name
-      value: Portal
-      objectReference: {fileID: 0}
     - target: {fileID: 8973174886620504425, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1111,10 +1106,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3758967830196328284, guid: e6613d91094e1814aad9af9bd50deb66,
+    - target: {fileID: 7209675868089126389, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
-      propertyPath: nextLevel
-      value: Level_Two
+      propertyPath: m_Name
+      value: Portal
       objectReference: {fileID: 0}
     - target: {fileID: 3089110730339705480, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
@@ -1130,6 +1125,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758967830196328284, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: nextLevel
+      value: Level_Two
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6613d91094e1814aad9af9bd50deb66, type: 3}
@@ -2052,6 +2052,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6415782754150206804, guid: 266316d075a1aed4d8179aba20ec8b0b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ae7d3134af74d040a4e71dff2e8158c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 266316d075a1aed4d8179aba20ec8b0b, type: 3}
 --- !u!1001 &1055951859
@@ -3286,11 +3291,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144923997}
     m_Modifications:
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3355,6 +3355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.010000011
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
@@ -3896,11 +3901,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144923997}
     m_Modifications:
-    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_WallConner_Outside (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 5101881747641028885, guid: 9c633a7feb44b0140b5263ad1cba45eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3955,6 +3955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101881747641388341, guid: 9c633a7feb44b0140b5263ad1cba45eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh_WallConner_Outside (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c633a7feb44b0140b5263ad1cba45eb, type: 3}
@@ -4350,11 +4355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2784078530235529193, guid: a778cde6b78ca3047b5852f3f17a9716,
-        type: 3}
-      propertyPath: m_Name
-      value: InstructionsPanel
-      objectReference: {fileID: 0}
     - target: {fileID: 2784078530235689929, guid: a778cde6b78ca3047b5852f3f17a9716,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4409,6 +4409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784078530235529193, guid: a778cde6b78ca3047b5852f3f17a9716,
+        type: 3}
+      propertyPath: m_Name
+      value: InstructionsPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a778cde6b78ca3047b5852f3f17a9716, type: 3}
