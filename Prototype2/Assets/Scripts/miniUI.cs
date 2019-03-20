@@ -2,23 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class miniUI : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Reset score when the level is loaded
-        score.playerThrowCount = 0;
-        score.playerScore = 0;
-        score.levelName = SceneManager.GetActiveScene().name;
-        print(score.levelName);
-    }
-
     public void UpdateScore() {
         int totalScore = score.playerScore - score.playerThrowCount;
         scoreText.text = "Current Score: " + score.playerScore + " | Throws: " + score.playerThrowCount + "\nTotal Score: " + totalScore;
