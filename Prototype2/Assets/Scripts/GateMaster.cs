@@ -27,7 +27,8 @@ public class GateMaster : MonoBehaviour
 
     public void UpdateGateState() {
         if (GetNumberOfClosedGates() >= numberOfGatesRequired) {
-            portal.SetActive(true);
+            //portal.SetActive(true);
+            portal.GetComponent<Portal>().TurnOn();
         }
     }
 

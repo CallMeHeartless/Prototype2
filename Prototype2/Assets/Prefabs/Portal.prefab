@@ -169,7 +169,7 @@ BoxCollider:
   m_GameObject: {fileID: 7209675868089126389}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.05, y: 1.4, z: 1.4}
   m_Center: {x: -0.07853696, y: 0, z: 0}
@@ -193,6 +193,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8973174886620504425}
     m_Modifications:
+    - target: {fileID: 100000, guid: eaba8aa2098e3444e95352db7a166608, type: 3}
+      propertyPath: m_Name
+      value: sm_EndPortal
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eaba8aa2098e3444e95352db7a166608, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -237,10 +241,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: eaba8aa2098e3444e95352db7a166608, type: 3}
-      propertyPath: m_Name
-      value: sm_EndPortal
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: eaba8aa2098e3444e95352db7a166608, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -264,6 +264,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_EndPortalMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035736815679493207, guid: 0717adc54cf26aa4bb45869f24b0d436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5321366119255794442, guid: 0717adc54cf26aa4bb45869f24b0d436,
         type: 3}
@@ -344,6 +349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_EndPortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859800970076652464, guid: 4a39f81d1217cd14dad67417359275d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4859800970076652479, guid: 4a39f81d1217cd14dad67417359275d7,
         type: 3}
