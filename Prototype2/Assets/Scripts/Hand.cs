@@ -144,8 +144,8 @@ public class Hand : MonoBehaviour
             ToggleScoreUI(false);
         }
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
-            //GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
-            ToggleMenu();
+            GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+            //ToggleMenu();
         }
 
 
@@ -193,15 +193,19 @@ public class Hand : MonoBehaviour
             // If the object is a ball, update the ball's last position
             Ball ball = heldObject.GetComponent<Ball>();
             if (ball) {
-                if (ball.canMove == true)
-                {
-                    ball.UpdateLastPosition();
-                }
+                //if (heldObject.GetComponent<MultBallEffects>().currentBall == 3) {
+                    if (ball.canMove == true) {
+                        ball.UpdateLastPosition();
+                    }
+                //}
+               
             }
         }
 
         // Indicate that the player is holding an object, so that they cannot teleport
-        handsAreFree = false;
+        //if (heldObject.GetComponent<MultBallEffects>().currentBall != 3) {
+            handsAreFree = false;
+        //}
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();

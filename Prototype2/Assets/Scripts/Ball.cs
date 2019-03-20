@@ -27,9 +27,9 @@ public class Ball : Interactable
     protected override void FixedUpdate() {
         if (activeHand && !hasReachedHand) {
 
-            if (GetComponent<MultBallEffects>().currentBall != 3)
+           // if (GetComponent<MultBallEffects>().currentBall != 3)
             {
-                lastPosition = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+                lastPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
                 Vector3 direction = activeHand.transform.position - transform.position;
@@ -43,28 +43,26 @@ public class Ball : Interactable
                     hasReachedHand = true;
                     activeHand.AttachToJoint();
                 }
-            }
-            else {
-                if (!canMove)//doesn't hit something
-                  {
-                    Vector3 direction = new Vector3(activeHand.transform.position.x, 0, activeHand.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
+            //}
+            //else {
+            //    if (!canMove)//doesn't hit something
+            //      {
+            //        Vector3 direction = new Vector3(activeHand.transform.position.x, 0, activeHand.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
                         
-                        if (direction.sqrMagnitude > grabThreshold) {
+            //            if (direction.sqrMagnitude > grabThreshold) {
 
-                            rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
+            //                rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
 
     
-                        } else {
-                            //rb.MovePosition(activeHand.transform.position);
-                            hasReachedHand = true;
-                            activeHand.AttachToJoint();
-                        }
-                }
-
+            //            } else {
+            //                //rb.MovePosition(activeHand.transform.position);
+            //                hasReachedHand = true;
+            //                activeHand.AttachToJoint();
+            //            }
             }
 
-
         }
+
     }
 
     public override void Release() {
@@ -97,7 +95,7 @@ public class Ball : Interactable
     {
         if (GetComponent<MultBallEffects>().currentBall == 3)
         {
-            StartCoroutine(CouldMove());
+            //StartCoroutine(CouldMove());
 
         }
         
