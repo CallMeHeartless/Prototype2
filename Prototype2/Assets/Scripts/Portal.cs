@@ -23,4 +23,13 @@ public class Portal : MonoBehaviour
         SceneManager.LoadScene(nextLevel);
     }
 
+    public void TurnOn() {
+        // Activate collider
+        BoxCollider collider = GetComponent<BoxCollider>();
+        collider.enabled = true;
+        // Turn on VFX
+        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(3).gameObject.SetActive(true);
+    }
+
 }

@@ -144,8 +144,8 @@ public class Hand : MonoBehaviour
             ToggleScoreUI(false);
         }
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
-            GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
-            //ToggleMenu();
+            //GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+            ToggleMenu();
         }
 
 
