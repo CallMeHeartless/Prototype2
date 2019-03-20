@@ -81,8 +81,9 @@ GameObject:
   - component: {fileID: 5998152588975193427}
   - component: {fileID: 5998152588974227347}
   - component: {fileID: 6514072679914483603}
+  - component: {fileID: 4523380831895703035}
   m_Layer: 0
-  m_Name: Mesh_Blocker
+  m_Name: Mesh_Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +130,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a8f2022bed9fea747b0b8530341bd635, type: 2}
+  - {fileID: 2100000, guid: ef7067d42e153bb49878400857dd4446, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,8 +161,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1730614, y: 0.5863466, z: 0.43021107}
-  m_Center: {x: 0.003109932, y: 0.2931733, z: 0.0054984093}
+  m_Size: {x: 0.009999994, y: 0.58842087, z: 0.4412074}
+  m_Center: {x: 0.0000000027939677, y: 0.29421043, z: -0.0020735264}
+--- !u!114 &4523380831895703035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5998152588972220755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ab9678b066f8347b5d15f93aa18c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceStrength: 20
 --- !u!1 &8424310751547539464
 GameObject:
   m_ObjectHideFlags: 0
