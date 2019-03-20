@@ -138,10 +138,11 @@ public class Hand : MonoBehaviour
         }
 
         if (gripTest.GetLastStateDown(handPose.inputSource)) {
-            ToggleScoreUI(true);
+            GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+
         }
         if (gripTest.GetLastStateUp(handPose.inputSource)) {
-            ToggleScoreUI(false);
+            //ToggleScoreUI(false);
         }
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
             //GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
