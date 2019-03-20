@@ -9,21 +9,9 @@ public class MultBallEffects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        switch (currentBall)
+        {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //1 speed
-        //2 weight
-       
-
-    }
-    public void DifferentBall(){
-
-        switch (currentBall) { 
-           
             case 0:
                 //GameObject[] AllFloor = GameObject.FindGameObjectsWithTag("Walkable");
                 //for (int i = 0; i < AllFloor.Length; i++)
@@ -45,11 +33,11 @@ public class MultBallEffects : MonoBehaviour
                 currentBall = 0;
                 break;
             case 3:
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                player.transform.GetChild(0).GetComponent<SphereCollider>().radius = 1.25f;
-                player.transform.GetChild(1).GetComponent<SphereCollider>().radius = 1.25f;
+                //GameObject player = GameObject.FindGameObjectWithTag("Player");
+                //player.transform.GetChild(0).GetComponent<SphereCollider>().radius = 1.25f;
+                //player.transform.GetChild(1).GetComponent<SphereCollider>().radius = 1.25f;
                 //gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                currentBall=0;
+                //currentBall=0;
                 break;
             case 4:
                 //GameObject[] AllFloorB = GameObject.FindGameObjectsWithTag("Walkable");
@@ -62,11 +50,32 @@ public class MultBallEffects : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //1 speed
+        //2 weight
+       
+
+    }
+    public void DifferentBall(GameObject newBall)
+    {
+
+        //Debug.Log(currentBall);
+        if (currentBall != 2)
+        {
+            currentBall++;
+        }
+        else
+        {
+            currentBall = 0;
+        }
         
-        Debug.Log(currentBall);
-        //GameObject newBall = Instantiate(balls[currentBall], transform.position, transform.rotation);
-        //newBall.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
-       // GameObject.FindWithTag("Player");
-        //  Destroy(gameObject);
+        newBall = Instantiate(balls[currentBall + 1], transform.position, transform.rotation);
+        newBall.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
+        newBall.GetComponent<MultBallEffects>().currentBall = currentBall;
+        Destroy(gameObject);
     }
 }

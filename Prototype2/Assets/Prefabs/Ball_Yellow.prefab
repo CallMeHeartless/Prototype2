@@ -148,7 +148,7 @@ MonoBehaviour:
   grabThreshold: 0.01
   translationSpeed: 10
   increaseSpeed: 4
-  increaseHeight: 0
+  increaseHeight: 1.5
   canMove: 1
   delay: 4
 --- !u!114 &5628312511350031052
@@ -163,7 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f2fb91c0b98604ab49b0d60b17d59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBall: 0
+  currentBall: 2
+  balls:
+  - {fileID: 45891222942718907, guid: cc4f962f230d99749899b8a665eb175d, type: 3}
+  - {fileID: 45891222942718907, guid: dd8476bf2fc16d749b9978c034ef8083, type: 3}
+  - {fileID: 45891222942718907}
 --- !u!1 &1334044871212429551
 GameObject:
   m_ObjectHideFlags: 0
