@@ -141,7 +141,9 @@ public class Hand : MonoBehaviour
             if (!heldObject) {
 
             } else {
-                GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+                GameObject newBall = null;
+                GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall(newBall);
+                Pickup();
             }
         }
         if (gripTest.GetLastStateUp(handPose.inputSource)) {

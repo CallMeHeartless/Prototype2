@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6969529772616089007}
   - component: {fileID: 5628312511350031052}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Ball_Purple
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   grabThreshold: 0.01
   translationSpeed: 10
   increaseSpeed: 4
-  increaseHeight: 0
+  increaseHeight: 1.5
   canMove: 1
   delay: 4
 --- !u!114 &5628312511350031052
@@ -164,6 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBall: 0
+  balls:
+  - {fileID: 45891222942718907}
+  - {fileID: 45891222942718907, guid: dd8476bf2fc16d749b9978c034ef8083, type: 3}
+  - {fileID: 45891222942718907, guid: d418b0619f7e26849b95c4ecc714a131, type: 3}
 --- !u!1 &1334044871212429551
 GameObject:
   m_ObjectHideFlags: 0
