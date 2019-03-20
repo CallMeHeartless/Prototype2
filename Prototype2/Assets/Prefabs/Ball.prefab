@@ -148,7 +148,7 @@ MonoBehaviour:
   grabThreshold: 0.01
   translationSpeed: 10
   increaseSpeed: 4
-  increaseHeight: 0
+  increaseHeight: 1.5
   canMove: 1
   delay: 4
 --- !u!114 &5628312511350031052
@@ -164,6 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBall: 0
+  balls:
+  - {fileID: 45891222942718907}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1334044871212429551
 GameObject:
   m_ObjectHideFlags: 0
