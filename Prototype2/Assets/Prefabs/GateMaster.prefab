@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26a6da7114ed774d848cc3c187c6494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closedColour: {r: 0.24056602, g: 1, b: 0.65823853, a: 0}
   hasBeenTriggered: 0
 --- !u!1 &7414274460710865183
 GameObject:

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GateController : MonoBehaviour
 {
-
+    [SerializeField]
+    private Color closedColour;
     public bool hasBeenTriggered = false;
 
     private void OnTriggerEnter(Collider other) {
@@ -13,6 +14,11 @@ public class GateController : MonoBehaviour
             // Tell parent to update status
             transform.root.GetComponent<GateMaster>().UpdateGateState();
             // Update visuals
+            ParticleSystem gateParticles = GetComponent<ParticleSystem>();
+            if (gateParticles) {
+                ParticleSystem.MainModule main = gateParticles.main;
+                main.startColor = closedColour;
+            }
         }
     }
 
