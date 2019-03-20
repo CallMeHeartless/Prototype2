@@ -1111,10 +1111,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3089110730339705480, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3758967830196328284, guid: e6613d91094e1814aad9af9bd50deb66,
         type: 3}
       propertyPath: nextLevel
       value: Level_Two
+      objectReference: {fileID: 0}
+    - target: {fileID: 4692131744052603535, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133478774074871954, guid: e6613d91094e1814aad9af9bd50deb66,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6613d91094e1814aad9af9bd50deb66, type: 3}
