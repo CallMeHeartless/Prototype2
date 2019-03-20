@@ -66,6 +66,7 @@ public class MultBallEffects : MonoBehaviour
         Debug.Log(currentBall);
         //GameObject newBall = Instantiate(balls[currentBall], transform.position, transform.rotation);
         //newBall.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
-        //Destroy(gameObject);
+       // GameObject.FindWithTag("Player");
+        //  Destroy(gameObject);
     }
 }
