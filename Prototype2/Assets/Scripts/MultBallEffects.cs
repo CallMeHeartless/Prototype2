@@ -23,6 +23,7 @@ public class MultBallEffects : MonoBehaviour
         newBall = Instantiate(balls[currentBall], transform.position, transform.rotation);
         //newBall.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
         newBall.GetComponent<MultBallEffects>().currentBall = currentBall;
+        gameObject.GetComponent<AudioSource>().Stop();
         newBall.GetComponent<Ball>().lastPosition = gameObject.GetComponent<Ball>().lastPosition;
         
     }
