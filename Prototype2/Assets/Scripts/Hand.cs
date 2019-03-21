@@ -138,18 +138,17 @@ public class Hand : MonoBehaviour
         }
 
         if (gripTest.GetLastStateDown(handPose.inputSource)) {
-            if (!heldObject) {
+            bool holdingBall = false;
+            if (heldObject) {
                 ReleaseFromJoint(heldObject.GetComponent<Rigidbody>());
                 heldObject.Release();
                 heldObject = null;
 
                 // Allow the player to teleport
                 handsAreFree = true;
+                holdingBall = true;
+            } 
 
-            } //else {
-              //Pickup();
-              //handsAreFree = true;
-              //}
             GameObject newBall = null;
             GameObject currentBall = GameObject.FindGameObjectWithTag("Ball");
             currentBall.GetComponent<MultBallEffects>().DifferentBall(newBall);
@@ -163,8 +162,11 @@ public class Hand : MonoBehaviour
             }
             newBallInRange(newBall);
 
-            Debug.Log("ok");
             Destroy(currentBall);
+
+            if (holdingBall) {
+                Pickup();
+            }
         }
 
         if (gripTest.GetLastStateUp(handPose.inputSource)) {
