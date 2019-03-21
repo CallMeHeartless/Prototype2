@@ -70,7 +70,8 @@ public class Hand : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {   
         // Picking up and releasing items
         if (grabAction.GetLastStateDown(handPose.inputSource)) {
             Pickup();
@@ -105,7 +106,7 @@ public class Hand : MonoBehaviour
                     ToggleScoreUI(true);
                     break;
                 }
-                default: break;
+                default:break;
             }
         }
 
@@ -137,12 +138,7 @@ public class Hand : MonoBehaviour
         }
 
         if (gripTest.GetLastStateDown(handPose.inputSource)) {
-
-            if (heldObject) {
-                GameObject currentBall = GameObject.FindGameObjectWithTag("Ball");
-
-
-           // if (currentBall.GetComponent<Ball>().held == true) {
+            if (!heldObject) {
                 ReleaseFromJoint(heldObject.GetComponent<Rigidbody>());
                 heldObject.Release();
                 heldObject = null;
@@ -150,12 +146,12 @@ public class Hand : MonoBehaviour
                 // Allow the player to teleport
                 handsAreFree = true;
 
-           // } else {
-                //Pickup();
-                //handsAreFree = true;
-            //}
+            } //else {
+              //Pickup();
+              //handsAreFree = true;
+              //}
             GameObject newBall = null;
-
+            GameObject currentBall = GameObject.FindGameObjectWithTag("Ball");
             currentBall.GetComponent<MultBallEffects>().DifferentBall(newBall);
 
 
@@ -165,12 +161,11 @@ public class Hand : MonoBehaviour
                 currentBall.gameObject.GetComponent<Interactable>().ToggleHighlight(false);
 
             }
-
-            //newBallInRange(newBall);
+            newBallInRange(newBall);
 
             Debug.Log("ok");
             Destroy(currentBall);
-        } }
+        }
 
         if (gripTest.GetLastStateUp(handPose.inputSource)) {
             //ToggleScoreUI(false);
@@ -228,7 +223,6 @@ public class Hand : MonoBehaviour
                 //if (heldObject.GetComponent<MultBallEffects>().currentBall == 3) {
                     if (ball.canMove == true) {
                         ball.UpdateLastPosition();
-                        ball.held = true;
                     }
                 //}
                
@@ -258,7 +252,7 @@ public class Hand : MonoBehaviour
         // Count throws if object is ball
         if (heldObject.GetComponent<Ball>()) {
             score.Roll();
-            heldObject.GetComponent<Ball>().held = false;
+
         }
 
         // Apply physics and break joint
