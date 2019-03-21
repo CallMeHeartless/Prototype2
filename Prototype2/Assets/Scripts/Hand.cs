@@ -215,7 +215,7 @@ public class Hand : MonoBehaviour
         if (!heldObject) {
             return;
         }
-        print("Nearest: " + heldObject.name);
+        //print("Nearest: " + heldObject.name);
 
         // Force other hand to drop if already held
         if (heldObject.activeHand) {

@@ -31,11 +31,15 @@ public class MagicSpaceCubeController : MonoBehaviour
             if (sound != null) {
                 sound.Play();
             }
-            Destroy(gameObject);
+           
         }
     }
 
     public void RemoveCube() {
+        AudioSource sound = gameObject.GetComponent<AudioSource>();
+        if (sound != null) {
+            sound.Stop();
+        }
         Destroy(gameObject);
     }
 }

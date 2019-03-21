@@ -8,7 +8,6 @@ public class GateMaster : MonoBehaviour
     private GameObject portal;
     [SerializeField][Tooltip("The number of gates that must be triggered in order for the portal to appear")]
     private float numberOfGatesRequired;
-    //Transform[] childGates;
     List<Transform> childGates = new List<Transform>();
 
     void Start()
@@ -21,14 +20,20 @@ public class GateMaster : MonoBehaviour
             Debug.LogError("ERROR: Child gates are missing from gate master. Null reference exception will follow");
         }
         if (!portal) {
-            portal = GameObject.Find("Portal");
+            //portal = GameObject.Find("Portal");
+            print("That was the error");
         }
     }
 
     public void UpdateGateState() {
         if (GetNumberOfClosedGates() >= numberOfGatesRequired) {
             //portal.SetActive(true);
-            portal.GetComponent<Portal>().TurnOn();
+            //portal.GetComponent<Portal>().TurnOn();
+            if (portal.GetComponent<Portal>()) {
+                portal.GetComponent<Portal>().TurnOn();
+            } else {
+                Debug.LogError("ERROR: Gate Master cannot find Portal script for portal reference.");
+            }
         }
     }
 
