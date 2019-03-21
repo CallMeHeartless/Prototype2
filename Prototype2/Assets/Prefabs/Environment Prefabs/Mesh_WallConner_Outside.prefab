@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 5101881747641028885}
   - component: {fileID: 5101881747638128949}
   - component: {fileID: 5101881747639129077}
-  - component: {fileID: 7855034322879222467}
-  - component: {fileID: 7125997395637750331}
+  - component: {fileID: 5360422709187864663}
   m_Layer: 0
   m_Name: Mesh_WallConner_Outside
   m_TagString: Untagged
@@ -79,8 +78,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7855034322879222467
-BoxCollider:
+--- !u!64 &5360422709187864663
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -89,19 +88,7 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: bb4aac0184b64534995ef50639837171, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 525, y: 100, z: 50}
-  m_Center: {x: -237.5, y: 50, z: 0}
---- !u!65 &7125997395637750331
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5101881747641388341}
-  m_Material: {fileID: 13400000, guid: bb4aac0184b64534995ef50639837171, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 50, y: 100, z: 525}
-  m_Center: {x: 0, y: 50, z: -237.5}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 90c0cc628c4b1b54e843d2f53c645dab, type: 3}
