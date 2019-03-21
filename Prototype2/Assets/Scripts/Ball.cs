@@ -16,6 +16,7 @@ public class Ball : Interactable
     public float increaseHeight;
     public bool canMove = true;
     public float delay = 4;
+    AudioSource[] audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,12 +94,8 @@ public class Ball : Interactable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (GetComponent<MultBallEffects>().currentBall == 3)
-        {
-            //StartCoroutine(CouldMove());
+        audio[1].Play();
 
-        }
-        
     }
     IEnumerator CouldMove()
     {
