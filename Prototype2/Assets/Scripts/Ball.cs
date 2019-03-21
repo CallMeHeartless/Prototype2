@@ -22,7 +22,7 @@ public class Ball : Interactable
     {
         rb = GetComponent<Rigidbody>();
         lastPosition = transform.position;
-        
+        audio = gameObject.GetComponents<AudioSource>();
     }
 
     protected override void FixedUpdate() {

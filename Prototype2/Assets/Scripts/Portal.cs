@@ -28,6 +28,7 @@ public class Portal : MonoBehaviour
         // Activate collider
         BoxCollider collider = GetComponent<BoxCollider>();
         collider.enabled = true;
+        GetComponent<AudioSource>().Play();
         // Turn on VFX
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(3).gameObject.SetActive(true);
