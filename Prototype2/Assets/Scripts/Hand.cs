@@ -161,9 +161,9 @@ public class Hand : MonoBehaviour
                 print("Ball removed from list");
             }
             newBallInRange(newBall);
-            print("Destroying ball");
+            //print("Destroying ball");
             Destroy(currentBall);
-            print("Ball Destroyed");
+            //print("Ball Destroyed");
 
             if (holdingBall) {
                 interactables.Add(newBall.GetComponent<Interactable>());

@@ -15,7 +15,7 @@ public class GateMaster : MonoBehaviour
     {
         for(int i = 0; i < transform.childCount; ++i) {
             childGates.Add(transform.GetChild(i));
-            print(transform.GetChild(i).name);
+            //print(transform.GetChild(i).name);
         }
         if (!childGates[0]) {
             Debug.LogError("ERROR: Child gates are missing from gate master. Null reference exception will follow");

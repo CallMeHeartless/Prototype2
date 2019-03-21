@@ -17,12 +17,6 @@ public class MagicSpaceCubeController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Ball") && !hasBeenTriggered) {
             hasBeenTriggered = true; // Ensure script triggers only once
@@ -33,7 +27,11 @@ public class MagicSpaceCubeController : MonoBehaviour
 
             // Apply speed boost
             other.GetComponent<Rigidbody>().velocity *= speedMultiplier;
-            gameObject.GetComponent<AudioSource>().Play();
+            AudioSource sound = gameObject.GetComponent<AudioSource>();
+            if (sound != null) {
+                sound.Play();
+            }
+            Destroy(gameObject);
         }
     }
 
