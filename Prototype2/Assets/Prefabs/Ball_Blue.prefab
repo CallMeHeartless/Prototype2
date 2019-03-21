@@ -147,7 +147,9 @@ MonoBehaviour:
   hasReachedHand: 0
   grabThreshold: 0.01
   translationSpeed: 10
-  increaseSpeed: 4
+  lastPosition: {x: 0, y: 0, z: 0}
+  held: 0
+  increaseSpeed: 2
   increaseHeight: 0
   canMove: 1
   delay: 4
