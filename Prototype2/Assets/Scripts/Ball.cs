@@ -8,30 +8,29 @@ public class Ball : Interactable
     // Components
     private Rigidbody rb;
 
-    private Vector3 lastPosition;
-    public bool hasReachedHand = false;
-    [SerializeField]
-    private float translationSpeed = 3.0f;
-    [SerializeField]
-    private float grabThreshold = 0.01f;
+    public Vector3 lastPosition;
+
+
+    public bool held = false;
     public float increaseSpeed;
     public float increaseHeight;
     public bool canMove = true;
     public float delay = 4;
+    AudioSource[] audio;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         lastPosition = transform.position;
-        
+        audio = gameObject.GetComponents<AudioSource>();
     }
 
-    private void FixedUpdate() {
+    protected override void FixedUpdate() {
         if (activeHand && !hasReachedHand) {
 
-            if (GetComponent<MultBallEffects>().currentBall != 3)
+           // if (GetComponent<MultBallEffects>().currentBall != 3)
             {
-                lastPosition = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
+                lastPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
                 Vector3 direction = activeHand.transform.position - transform.position;
@@ -45,31 +44,29 @@ public class Ball : Interactable
                     hasReachedHand = true;
                     activeHand.AttachToJoint();
                 }
-            }
-            else {
-                if (!canMove)//doesn't hit something
-                  {
-                    Vector3 direction = new Vector3(activeHand.transform.position.x, 0, activeHand.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
+            //}
+            //else {
+            //    if (!canMove)//doesn't hit something
+            //      {
+            //        Vector3 direction = new Vector3(activeHand.transform.position.x, 0, activeHand.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
                         
-                        if (direction.sqrMagnitude > grabThreshold) {
+            //            if (direction.sqrMagnitude > grabThreshold) {
 
-                            rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
+            //                rb.MovePosition(transform.position + direction.normalized * translationSpeed * Time.fixedDeltaTime);
 
     
-                        } else {
-                            //rb.MovePosition(activeHand.transform.position);
-                            hasReachedHand = true;
-                            activeHand.AttachToJoint();
-                        }
-                }
-
+            //            } else {
+            //                //rb.MovePosition(activeHand.transform.position);
+            //                hasReachedHand = true;
+            //                activeHand.AttachToJoint();
+            //            }
             }
 
-
         }
+
     }
 
-    public void Release() {
+    public override void Release() {
         if (GetComponent<MultBallEffects>().currentBall == 1) {
             rb.velocity = new Vector3( rb.velocity.x * increaseSpeed, rb.velocity.y, rb.velocity.z * increaseSpeed);
         }
@@ -80,8 +77,7 @@ public class Ball : Interactable
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * increaseHeight, rb.velocity.z);
             }
         }
-        activeHand = null;
-        hasReachedHand = false;
+        base.Release();
     }
 
     public void UpdateLastPosition() {
@@ -98,12 +94,8 @@ public class Ball : Interactable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (GetComponent<MultBallEffects>().currentBall == 3)
-        {
-            StartCoroutine(CouldMove());
+        audio[1].Play();
 
-        }
-        
     }
     IEnumerator CouldMove()
     {

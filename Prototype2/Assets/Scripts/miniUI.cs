@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class miniUI : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-  //  void Update()
-   // {
-        //transform.GetChild(0).GetComponent<Text>().text = score.levelNumber.ToString();
-        //transform.GetChild(1).GetComponent<Text>().text = score.currentLevelScore.ToString();
-    //}
-
     public void UpdateScore() {
-        scoreText.text = "Current Score: " + score.currentLevelScore + " | Best Score: ";
+        int totalScore = score.playerScore - score.playerThrowCount;
+        scoreText.text = "Current Score: " + score.playerScore + " | Throws: " + score.playerThrowCount + "\nTotal Score: " + totalScore;
+        // Update high score
+        if (totalScore > PlayerPrefs.GetInt("HighScore" + score.levelName, 0)) {
+            PlayerPrefs.SetInt("HighScore" + score.levelName, totalScore);
+        }
+        scoreText.text += "\nHigh Score: " + PlayerPrefs.GetInt("HighScore" + score.levelName, 0);
     }
 }

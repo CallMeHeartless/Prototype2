@@ -13,7 +13,7 @@ public class Bounce : MonoBehaviour
 
     {
 
-        Debug.Log("hitting");
+        //Debug.Log("hitting");
         if (other.gameObject.CompareTag("Interactable") || other.gameObject.CompareTag("Ball") || other.gameObject.CompareTag("Pin"))
         {
             Debug.Log("player");

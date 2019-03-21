@@ -128,6 +128,7 @@ public class Hand : MonoBehaviour
                     break;
                 }
             }
+            teleportDown = false;
             ToggleScoreUI(false);
             teleportMarkerInstance.SetActive(false);
         }
@@ -137,14 +138,48 @@ public class Hand : MonoBehaviour
         }
 
         if (gripTest.GetLastStateDown(handPose.inputSource)) {
-            ToggleScoreUI(true);
+            bool holdingBall = false;
+            if (heldObject) {
+                ReleaseFromJoint(heldObject.GetComponent<Rigidbody>());
+                heldObject.Release();
+                heldObject = null;
+
+                // Allow the player to teleport
+                handsAreFree = true;
+                holdingBall = true;
+            } 
+
+            GameObject newBall = null;
+            GameObject currentBall = GameObject.FindGameObjectWithTag("Ball");
+            currentBall.GetComponent<MultBallEffects>().DifferentBall(newBall);
+
+
+            if (interactables.Contains(currentBall.gameObject.GetComponent<Interactable>())) {
+
+                interactables.Remove(currentBall.gameObject.GetComponent<Interactable>());
+                currentBall.gameObject.GetComponent<Interactable>().ToggleHighlight(false);
+                print("Ball removed from list");
+            }
+            newBallInRange(newBall);
+            //print("Destroying ball");
+            Destroy(currentBall);
+            //print("Ball Destroyed");
+
+            if (holdingBall) {
+                interactables.Add(newBall.GetComponent<Interactable>());
+                Pickup();
+            }
         }
+
         if (gripTest.GetLastStateUp(handPose.inputSource)) {
-            ToggleScoreUI(false);
+            //ToggleScoreUI(false);
         }
         if (MenuButton.GetLastStateDown(handPose.inputSource)) {
-            GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+            //GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall();
+            ToggleMenu();
         }
+
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -176,10 +211,11 @@ public class Hand : MonoBehaviour
     // Find the nearest interactable object and attempt to pick it up
     public void Pickup() {
         heldObject = GetNearestInteractable();
-
+        
         if (!heldObject) {
             return;
         }
+        //print("Nearest: " + heldObject.name);
 
         // Force other hand to drop if already held
         if (heldObject.activeHand) {
@@ -188,15 +224,19 @@ public class Hand : MonoBehaviour
             // If the object is a ball, update the ball's last position
             Ball ball = heldObject.GetComponent<Ball>();
             if (ball) {
-                if (ball.canMove == true)
-                {
-                    ball.UpdateLastPosition();
-                }
+                //if (heldObject.GetComponent<MultBallEffects>().currentBall == 3) {
+                    if (ball.canMove == true) {
+                        ball.UpdateLastPosition();
+                    }
+                //}
+               
             }
         }
 
         // Indicate that the player is holding an object, so that they cannot teleport
-        handsAreFree = false;
+        //if (heldObject.GetComponent<MultBallEffects>().currentBall != 3) {
+            handsAreFree = false;
+        //}
 
         // Attach to joint
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
@@ -226,11 +266,7 @@ public class Hand : MonoBehaviour
         targetBody.angularVelocity = handPose.GetAngularVelocity() * angularVelocityModifier;
 
         // Disconnect the object
-        //heldObject.GetComponent<Ball>().Release();
-        Ball ball = heldObject.GetComponent<Ball>();
-        if (ball) {
-            ball.Release();
-        }
+        heldObject.Release();
         heldObject = null;
 
         // Allow the player to teleport
@@ -259,7 +295,7 @@ public class Hand : MonoBehaviour
     // Try to find a valid teleport location, shown by a marker
     private void TeleportDown() {
         // Cancel if holding ball
-        if (heldObject || isTeleporting || !handsAreFree) {
+        if (heldObject || isTeleporting || !handsAreFree) {//
             return;
         }
 
@@ -323,7 +359,10 @@ public class Hand : MonoBehaviour
         // Force the object to be mapped to its (offset) and attach it to the fixed joint
         heldObject.transform.position = transform.position;
         Rigidbody targetBody = heldObject.GetComponent<Rigidbody>();
-        grabJoint.connectedBody = targetBody;
+        if (targetBody) {
+            grabJoint.connectedBody = targetBody;
+        }
+        //if(heldObject.GetComponent<Ball>())
         targetBody.isKinematic = false;
 
         // Haptic feedback
@@ -332,15 +371,20 @@ public class Hand : MonoBehaviour
 
     // Detaches an interactable object from the hand's fixed joint, freeing it
     public void ReleaseFromJoint(Rigidbody targetBody) {
-        targetBody.isKinematic = false;
+        if (heldObject.GetComponent<Ball>()) {
+            targetBody.isKinematic = false;
+        } else {
+            targetBody.isKinematic = true;
+        }
+
         grabJoint.connectedBody = null;
     }
 
     private int ConvertTouchPadButtons(Vector2 vectorInput) {
-        if(vectorInput.y > 0.5) {
+        if(vectorInput.y > 0.65) {
             return 0;
         }
-        else if(vectorInput.y < -0.5f) {
+        else if(vectorInput.y < -0.65f) {
             return 2;
         }
 
@@ -377,7 +421,7 @@ public class Hand : MonoBehaviour
         }
 
         // Undo throw on score
-        --score.currentLevelScore;
+        --score.playerThrowCount;
 
          --mulliganCount;
     }
@@ -407,13 +451,47 @@ public class Hand : MonoBehaviour
 
         // Check if menu objects are already enabled
         if (inGameMenu.activeSelf) {
+            // Reset hands radius to be 1.25
+            SetHandColliderDetectionRadius(1.25f);
             // Disable them
             inGameMenu.SetActive(false);
-            holoLevel.SetActive(false);
+            if (holoLevel) {
+                holoLevel.SetActive(false);
+                holoLevel.transform.position = transform.position;// + new Vector3(0, 1, 0.5f);
+            }
+
         } else {
+            // Reduce detection radius
+            SetHandColliderDetectionRadius(0.01f);
             // Enable them
             inGameMenu.SetActive(true);
             holoLevel.SetActive(true);
         }
+    }
+
+    private void SetHandColliderDetectionRadius(float radius) {
+        SphereCollider[] hands = transform.root.GetComponentsInChildren<SphereCollider>();
+        if (hands[0]) {
+            foreach(SphereCollider hand in hands) {
+                hand.radius = radius;
+            }
+        }
+    }
+    public void newBallInRange(GameObject other) {
+        if (!other) {
+            return;
+        }
+
+        interactables.Add(other.GetComponent<Interactable>());
+        // Highlight closest object
+        Interactable closest = GetNearestInteractable();
+        foreach (Interactable item in interactables) {
+            if (item == closest) {
+                item.ToggleHighlight(true);
+            } else {
+                item.ToggleHighlight(false);
+            }
+        }
+        //return true;
     }
 }

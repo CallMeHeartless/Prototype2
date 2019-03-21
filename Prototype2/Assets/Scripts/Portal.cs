@@ -15,12 +15,24 @@ public class Portal : MonoBehaviour
             // Load the next level
             hasBeenActivated = true;
             StartCoroutine(LevelTransition());
+            Destroy(other.gameObject);
         }
     }
 
     private IEnumerator LevelTransition() {
         yield return new WaitForSeconds(transitionDelay);
         SceneManager.LoadScene(nextLevel);
+    }
+
+    public void TurnOn() {
+        // Activate collider
+        BoxCollider collider = GetComponent<BoxCollider>();
+        collider.enabled = true;
+        GetComponent<AudioSource>().Play();
+        // Turn on VFX
+        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(3).gameObject.SetActive(true);
+        print("Portal turned on");
     }
 
 }
