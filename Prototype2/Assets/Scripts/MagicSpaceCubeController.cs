@@ -33,7 +33,6 @@ public class MagicSpaceCubeController : MonoBehaviour
 
             // Apply speed boost
             other.GetComponent<Rigidbody>().velocity *= speedMultiplier;
-            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 

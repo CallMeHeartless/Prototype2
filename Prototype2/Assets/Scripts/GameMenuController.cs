@@ -28,7 +28,6 @@ public class GameMenuController : MonoBehaviour
                 gameObject.SetActive(false);
             } else {
                 // Exit application
-                GetComponent<AudioSource>().Play();
                 Application.Quit();
             }
         }
