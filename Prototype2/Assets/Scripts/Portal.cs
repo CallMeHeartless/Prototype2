@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour
             // Load the next level
             hasBeenActivated = true;
             StartCoroutine(LevelTransition());
+            Destroy(other.gameObject);
         }
     }
 
