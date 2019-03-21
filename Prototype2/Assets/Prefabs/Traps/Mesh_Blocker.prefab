@@ -81,7 +81,6 @@ GameObject:
   - component: {fileID: 5998152588975193427}
   - component: {fileID: 5998152588974227347}
   - component: {fileID: 6514072679914483603}
-  - component: {fileID: 385115741}
   m_Layer: 0
   m_Name: Mesh_Blocker
   m_TagString: Untagged
@@ -163,27 +162,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1730614, y: 0.5863466, z: 0.43021107}
   m_Center: {x: 0.003109932, y: 0.2931733, z: 0.0054984093}
---- !u!114 &385115741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5998152588972220755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6fa2fa20d3e9949b0d29367f8b5003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMoving: 1
-  isRotating: 0
-  speed: 1
-  rotationSpeed: 0
-  moveTo:
-  - {fileID: 0}
-  - {fileID: 0}
-  goal: {fileID: 0}
-  CurrentGoal: 0
 --- !u!1 &8424310751547539464
 GameObject:
   m_ObjectHideFlags: 0
