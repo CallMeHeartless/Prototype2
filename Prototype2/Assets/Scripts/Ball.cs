@@ -8,10 +8,10 @@ public class Ball : Interactable
     // Components
     private Rigidbody rb;
 
-    private Vector3 lastPosition;
-    
+    public Vector3 lastPosition;
 
-    
+
+    public bool held = false;
     public float increaseSpeed;
     public float increaseHeight;
     public bool canMove = true;

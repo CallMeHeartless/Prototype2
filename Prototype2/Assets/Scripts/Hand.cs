@@ -70,8 +70,7 @@ public class Hand : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {   
+    void Update() {
         // Picking up and releasing items
         if (grabAction.GetLastStateDown(handPose.inputSource)) {
             Pickup();
@@ -106,7 +105,7 @@ public class Hand : MonoBehaviour
                     ToggleScoreUI(true);
                     break;
                 }
-                default:break;
+                default: break;
             }
         }
 
@@ -138,14 +137,41 @@ public class Hand : MonoBehaviour
         }
 
         if (gripTest.GetLastStateDown(handPose.inputSource)) {
-            if (!heldObject) {
 
-            } else {
-                GameObject newBall = null;
-                GameObject.FindGameObjectWithTag("Ball").GetComponent<MultBallEffects>().DifferentBall(newBall);
-                Pickup();
+            if (heldObject) {
+                GameObject currentBall = GameObject.FindGameObjectWithTag("Ball");
+
+
+           // if (currentBall.GetComponent<Ball>().held == true) {
+                ReleaseFromJoint(heldObject.GetComponent<Rigidbody>());
+                heldObject.Release();
+                heldObject = null;
+
+                // Allow the player to teleport
+                handsAreFree = true;
+
+           // } else {
+                //Pickup();
+                //handsAreFree = true;
+            //}
+            GameObject newBall = null;
+
+            currentBall.GetComponent<MultBallEffects>().DifferentBall(newBall);
+
+
+            if (interactables.Contains(currentBall.gameObject.GetComponent<Interactable>())) {
+
+                interactables.Remove(currentBall.gameObject.GetComponent<Interactable>());
+                currentBall.gameObject.GetComponent<Interactable>().ToggleHighlight(false);
+
             }
-        }
+
+            //newBallInRange(newBall);
+
+            Debug.Log("ok");
+            Destroy(currentBall);
+        } }
+
         if (gripTest.GetLastStateUp(handPose.inputSource)) {
             //ToggleScoreUI(false);
         }
@@ -202,6 +228,7 @@ public class Hand : MonoBehaviour
                 //if (heldObject.GetComponent<MultBallEffects>().currentBall == 3) {
                     if (ball.canMove == true) {
                         ball.UpdateLastPosition();
+                        ball.held = true;
                     }
                 //}
                
@@ -231,7 +258,7 @@ public class Hand : MonoBehaviour
         // Count throws if object is ball
         if (heldObject.GetComponent<Ball>()) {
             score.Roll();
-
+            heldObject.GetComponent<Ball>().held = false;
         }
 
         // Apply physics and break joint
@@ -426,6 +453,8 @@ public class Hand : MonoBehaviour
 
         // Check if menu objects are already enabled
         if (inGameMenu.activeSelf) {
+            // Reset hands radius to be 1.25
+            SetHandColliderDetectionRadius(1.25f);
             // Disable them
             inGameMenu.SetActive(false);
             if (holoLevel) {
@@ -434,9 +463,39 @@ public class Hand : MonoBehaviour
             }
 
         } else {
+            // Reduce detection radius
+            SetHandColliderDetectionRadius(0.01f);
             // Enable them
             inGameMenu.SetActive(true);
             holoLevel.SetActive(true);
         }
+    }
+
+    private void SetHandColliderDetectionRadius(float radius) {
+        SphereCollider[] hands = transform.root.GetComponentsInChildren<SphereCollider>();
+        if (hands[0]) {
+            foreach(SphereCollider hand in hands) {
+                hand.radius = radius;
+            }
+        }
+    }
+    public bool newBallInRange(GameObject other) {
+        //if (!other.CompareTag("Interactable") && !other.CompareTag("Ball")) {
+        //    return false;
+        //}
+
+        //check range
+
+        interactables.Add(other.GetComponent<Interactable>());
+        // Highlight closest object
+        Interactable closest = GetNearestInteractable();
+        foreach (Interactable item in interactables) {
+            if (item == closest) {
+                item.ToggleHighlight(true);
+            } else {
+                item.ToggleHighlight(false);
+            }
+        }
+        return true;
     }
 }

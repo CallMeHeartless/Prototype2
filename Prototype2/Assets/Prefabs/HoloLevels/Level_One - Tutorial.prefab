@@ -2994,7 +2994,6 @@ GameObject:
   - component: {fileID: 7477402652407696354}
   - component: {fileID: 7477402652409023426}
   - component: {fileID: 7477402652409989378}
-  - component: {fileID: 2383175819628265209}
   m_Layer: 0
   m_Name: Mesh_Ramp_Base
   m_TagString: Untagged
@@ -3061,19 +3060,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2383175819628265209
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7477402652407797698}
-  m_Material: {fileID: 13400000, guid: 7bf6361f4a3655943ac9dfe962c919e2, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 500.00003, y: 100, z: 500}
-  m_Center: {x: -249.99998, y: 49.999992, z: -250}
 --- !u!1 &7912998711216348029
 GameObject:
   m_ObjectHideFlags: 0
