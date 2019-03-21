@@ -158,13 +158,15 @@ public class Hand : MonoBehaviour
 
                 interactables.Remove(currentBall.gameObject.GetComponent<Interactable>());
                 currentBall.gameObject.GetComponent<Interactable>().ToggleHighlight(false);
-
+                print("Ball removed from list");
             }
             newBallInRange(newBall);
-
+            print("Destroying ball");
             Destroy(currentBall);
+            print("Ball Destroyed");
 
             if (holdingBall) {
+                interactables.Add(newBall.GetComponent<Interactable>());
                 Pickup();
             }
         }
@@ -475,12 +477,10 @@ public class Hand : MonoBehaviour
             }
         }
     }
-    public bool newBallInRange(GameObject other) {
-        //if (!other.CompareTag("Interactable") && !other.CompareTag("Ball")) {
-        //    return false;
-        //}
-
-        //check range
+    public void newBallInRange(GameObject other) {
+        if (!other) {
+            return;
+        }
 
         interactables.Add(other.GetComponent<Interactable>());
         // Highlight closest object
@@ -492,6 +492,6 @@ public class Hand : MonoBehaviour
                 item.ToggleHighlight(false);
             }
         }
-        return true;
+        //return true;
     }
 }
